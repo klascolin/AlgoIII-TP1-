@@ -28,7 +28,7 @@ public int  distanciaMax(HashSet<amistad> amistad){
 	
 	while(l1.hasNext()){
 		//Copio el iterador actual, desde donde esta, para no tener que recorrer desde el ppio.
-		ListIterator<Character> l2 = new ListIterator<Character>(l1);
+		ListIterator<Character> l2 = lista.listIterator(l1.nextIndex());
 		
 		//Miro el resto de las exploradores:
 		while(l2.hasNext() ){ //O(a)
