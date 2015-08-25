@@ -1,27 +1,46 @@
 package uba.algo3.ejemplotp;
 
+import java.util.HashSet;
+
 public class Fogon {
 	
 	//Miembros de la clase:
 
-	private ronda rondaOptima;
+	private Ronda rondaOptima;
+		
+	private HashSet<amistad> amigas;
+
+	Fogon(){
+	rondaOptima = new Ronda();
+	amigas = new HashSet<amistad>();
 	
-	private ronda rondaAux;
+	}
+
+	public solve(){
+			
+	//De alguna manera inicializar el conjunto de amigas
+		
+	Ronda rondaAux = new Ronda();
+
+	//De alguna manera obtener el array de exploradoras
 	
-	private amistad amigas;
+	sentarExploradoras(exploradoras,rondaAux,0);
+	
+	return;
+	}
 	
 	//Metodos:
 	
-	public void sentarExploradoras(lista exploradoras, int k){
+	public void sentarExploradoras(Character[] exploradoras, Ronda rondaAux, int k){
 		
 		//Se pueden agregar "podas"? Si la vamos armando y ya vemos que una distancia es mayor que la optima actual...
 		
 		//Veo si es una ronda completa:
 		
-			if(rondaAux.size() == exploradoras.size()){  //O(1)
+			if(rondaAux.size() == exploradoras.length){  //O(1)
 				
 				//Si la solucion es mejor que la optima actual, pasa a ser la nueva optima:
-				if(rondaAux.distanciaMax() > rondaOptima.distanciaMax()) // DistanciaMax debe ser O((e^2)*a)
+				if(rondaAux.distanciaMax() < rondaOptima.distanciaMax() || rondaOptima.esVacia() ) // DistanciaMax debe ser O((e^2)*a)
 					rondaOptima = rondaAux;
 		
 				//Descartamos la ultima eleccion y retornamos
@@ -30,12 +49,12 @@ public class Fogon {
 			}	
 		
 		//Si no esta completa, exploramos las proximas elecciones:
-		for(i=k,i<exploradoras.size(),i++){
+		for(i=k,i<exploradoras.length,i++){
 			
 			//Probamos con una nueva exploradora:
-			rondaAux.agregar(get(exploradoras,i));			
+			rondaAux.agregar(exploradoras[i]));			
 			//Mandamos el Backtrack:
-			sentarExploradoras(exploradoras,k++);
+			sentarExploradoras(exploradoras, rondaAux,k++);
 			//Descartamos la ultima eleccion y ciclamos para probar con la proxima
 			rondaAux.SacarUltimo();
 		}
@@ -46,3 +65,4 @@ public class Fogon {
 	
 	
 }
+ss
