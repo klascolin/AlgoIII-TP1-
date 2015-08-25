@@ -1,4 +1,5 @@
-package ej3;
+package uba.algo3.ejemplotp;
+
 import java.util.StringTokenizer;
 
 public class Separar {

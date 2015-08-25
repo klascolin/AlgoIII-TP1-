@@ -16,13 +16,11 @@ public class Fogon {
 	
 	}
 
-	public solve(){
+	public solve(Character[]  exploradoras, algo mas para la amistad){
 			
 	//De alguna manera inicializar el conjunto de amigas
 		
 	Ronda rondaAux = new Ronda();
-
-	//De alguna manera obtener el array de exploradoras
 	
 	sentarExploradoras(exploradoras,rondaAux,0);
 	
@@ -30,6 +28,8 @@ public class Fogon {
 	}
 	
 	//Metodos:
+	
+	//PRE: exploradoras debe estar ordenado alfabeticamente
 	
 	public void sentarExploradoras(Character[] exploradoras, Ronda rondaAux, int k){
 		
