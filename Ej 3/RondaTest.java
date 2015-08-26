@@ -18,25 +18,72 @@ import uba.algo3.Utils;
 
 public class RondaTest {
 
-	 @Test 
+
+	@Test 
+	
+	public void distancia(){
+		
+		Ronda r = new Ronda(Utils.parseArrayList( "a b c d e"));
+		System.out.println(r.toString());
+		System.out.println(r.size());
+		
+		assertEquals(1,r.distancia(0, 1));
+		assertEquals(2,r.distancia(0, 2));
+		assertEquals(2,r.distancia(0, 3));
+		assertEquals(1,r.distancia(0, 4));
+		assertEquals(0,r.distancia(0, 5));
+		
+		assertEquals(1,r.distancia(1, 2));
+		assertEquals(2,r.distancia(1, 3));
+		assertEquals(2,r.distancia(1, 4));
+		assertEquals(1,r.distancia(1, 5));
+		assertEquals(1,r.distancia(1, 0));
+		
+		//Seguir todos contra todos...¿?
+	}
+	
+	@Test 
 	   public void distanciaMaxTestBasico() {
 		
-		 HashSet<Amistad> amistad = new HashSet<Amistad>();
-		 amistad.add(new Amistad('a','b'));
-		 amistad.add(new Amistad('a','c'));
-		 amistad.add(new Amistad('b','c'));
+		
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		
+		//Prueba 1(un caso facil):
+		
+		amistad.add(new Amistad('a','b'));
+		amistad.add(new Amistad('a','c'));
+		amistad.add(new Amistad('b','c'));
 		 
-		 Ronda r = new Ronda(Utils.parseArrayList( "a b c"));
+		Ronda r = new Ronda(Utils.parseArrayList( "a b c"));
 			 
 		System.out.println(Utils.parseArrayList( "a b c "));
 		System.out.println(amistad.toString());
 
-		
-		//Prueba 1:
 		assertEquals(r.distanciaMax(amistad),1);
 		
+		System.out.println("Ok...");
 		
-		//Prueba 2:
+		//Prueba 2(catedra):
+		
+		amistad.removeAll(amistad);
+		assertEquals(amistad.size(),0);
+		amistad.add(new Amistad('a','c'));
+		amistad.add(new Amistad('a','d'));
+		amistad.add(new Amistad('a','e'));
+		amistad.add(new Amistad('b','c'));
+		amistad.add(new Amistad('b','d'));
+		amistad.add(new Amistad('b','e'));
+		amistad.add(new Amistad('c','d'));
+		amistad.add(new Amistad('c','e'));
+		
+		Ronda r2 = new Ronda(Utils.parseArrayList( "a b d c e "));
+		System.out.println(r2.toString());
+		System.out.println(amistad.toString());
+		
+		assertEquals(2,r2.distanciaMax(amistad));
+		
+		//Prueba 3(catedra):
+		amistad.removeAll(amistad);
 		amistad.add(new Amistad('a','b'));
 		amistad.add(new Amistad('a','c'));
 		amistad.add(new Amistad('b','c'));
@@ -44,13 +91,13 @@ public class RondaTest {
 		amistad.add(new Amistad('c','d'));
 		amistad.add(new Amistad('d','a'));
 		
-		Ronda r2 = new Ronda(Utils.parseArrayList( "a b c d e "));
+		Ronda r3 = new Ronda(Utils.parseArrayList( "a b e c d "));
 		System.out.println(r2.toString());
 		System.out.println(amistad.toString());
+	
+		assertEquals(2,r3.distanciaMax(amistad));
 		
-		
-		assertEquals(2,r2.distanciaMax(amistad));
-		
+		System.out.println("Listo, todo peola");
 		
 		 
 		 
