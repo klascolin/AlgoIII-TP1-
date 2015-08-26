@@ -12,7 +12,8 @@ public class Ronda extends ArrayList<Character>{
 		super(l);
 
 	}
-	Ronda(){
+	Ronda()
+	{
 	super();	
 	}
 	//Comparable:

@@ -52,7 +52,7 @@ public class Fogon {
 		//Si no esta completa, exploramos las proximas elecciones:
 		for(int i = 0; i < exploradoras.length; i++){
 			//Probamos con una nueva exploradora:
-			for (int j  = i; j < exploradoras.length; j++){ //O(e)
+			for (int j  = i + 1; j < exploradoras.length; j++){ //O(e)
 				if (!rondaAux.contains(exploradoras[j])
 					rondaAux.add(exploradoras[j]);
 			}
@@ -68,3 +68,4 @@ public class Fogon {
 	
 	
 }
+ss
