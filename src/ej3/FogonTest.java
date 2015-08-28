@@ -1,0 +1,84 @@
+package ej3;
+
+import static org.junit.Assert.assertEquals;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.StringTokenizer;
+
+import org.junit.Test;
+
+
+public class FogonTest {
+
+	@Test	
+	public void testSolve(){
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		
+		amistad.add(new Amistad('a','b'));
+		amistad.add(new Amistad('a','c'));
+		amistad.add(new Amistad('a','d'));
+		amistad.add(new Amistad('a','e'));
+		amistad.add(new Amistad('b','c'));
+		amistad.add(new Amistad('b','d'));
+		amistad.add(new Amistad('b','e'));
+		amistad.add(new Amistad('c','d'));
+		amistad.add(new Amistad('c','e'));
+		
+		Character[] exploradoras = {'a','b','c','d','e'};
+	
+		Fogon f = new Fogon();
+		
+		System.out.println(exploradoras.toString());
+		
+		System.out.println(f.solve(exploradoras, amistad).toString());
+		
+		amistad.removeAll(amistad);
+		amistad.add(new Amistad('a','b'));
+		amistad.add(new Amistad('a','c'));
+		amistad.add(new Amistad('b','c'));
+		amistad.add(new Amistad('b','e'));
+		amistad.add(new Amistad('c','d'));
+		amistad.add(new Amistad('d','a'));
+		
+		System.out.println(amistad.toString());
+		System.out.println(f.solve(exploradoras, amistad).toString());
+		
+		return;
+		
+	}
+	
+//	@Test
+/*
+	public void testArchivo() //lee del *.in y lo compara con el *.out
+	{
+		BufferedReader source  = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
+		BufferedReader control = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.out" ) ) );
+		
+		HashSet<Amistad> amistades = new HashSet<Amistad>();
+		Character[] exploradoras = new Character[27];
+	    String line;
+	    String amistad;
+	    int indice = 0;
+	    char c = '\0'; //Me guardo la primera, este es el valor nulo para inicializar la variable
+	    while ( ( line = source.readLine() ) != null ) { //Por cada l�nea en el archivo
+	        StringTokenizer st = new StringTokenizer(line, ";"); //La separo entre amistades
+	        while ( st.hasMoreTokens() ) { //Por cada amistad
+	        	amistad = st.nextToken();
+	        	exploradoras[indice] = amistad.charAt(0); //Agrego el caracter/exploradora
+	        	indice++;
+	        	for (int i = 0; i < amistad.length(); i++) //Recorro la amistad
+	        	{
+	        		if (i == 0)
+	        			c = amistad.charAt(i);
+	        		else if (i > 2) //salteo el espacio en blanco
+	        			amistades.add(new Amistad(c, amistad.charAt(i))); //Agrego amistad al primer caracter/exploradora
+	        	}
+	        }
+	     //solve.toString() = Ac� llamo al solve con las exploradoras y amistades ya armadas
+	     //assertEquals( control.readLine(), solve ) //comparo el resultado con el output esperado
+	    }
+	}
+	*/
+}
