@@ -14,16 +14,7 @@ public class Ronda extends ArrayList<Character>{
 	Ronda(){
 	super();	
 	}
-	//Comparable:
 	
-	/*public boolean equals( Ronda other ) {
-	    
-		//Esto podria ser util definirlo para usarlo como poda, asi (si son rondas iguales) no calculamos las distancias con amistad.
-		//Sin embargo, no se me ocurre como hacer esto "eficientemente"
-		
-	}*/
-
-
 public int  distanciaMax(HashSet<Amistad> amistad){
 	
 	if (size() < 2 || amistad.size() == 0)

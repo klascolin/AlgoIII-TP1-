@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
@@ -13,7 +15,8 @@ import org.junit.Test;
 public class FogonTest {
 
 	@Test	
-	public void testSolve(){
+	public void testSolve1(){
+		System.out.println("Test1...");
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		
 		amistad.add(new Amistad('a','b'));
@@ -29,12 +32,27 @@ public class FogonTest {
 		Character[] exploradoras = {'a','b','c','d','e'};
 	
 		Fogon f = new Fogon();
+		ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
 		
-		System.out.println(exploradoras.toString());
+		System.out.println(exp.toString());
+		System.out.println(amistad.toString());
+		String r1 = "[a, b, d, c, e] 2";
 		
-		System.out.println(f.solve(exploradoras, amistad).toString());
+		Ronda optima = f.solve(exploradoras,amistad); 
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima);
 		
-		amistad.removeAll(amistad);
+	
+		System.out.println("Ok...");
+		
+	}
+	
+	@Test
+	public void testSolve2(){
+		System.out.println("Test2...");
+		
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		Character[] exploradoras = {'a','b','c','d','e'};
+
 		amistad.add(new Amistad('a','b'));
 		amistad.add(new Amistad('a','c'));
 		amistad.add(new Amistad('b','c'));
@@ -42,12 +60,30 @@ public class FogonTest {
 		amistad.add(new Amistad('c','d'));
 		amistad.add(new Amistad('d','a'));
 		
+		Fogon f = new Fogon();
+		ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
+		System.out.println(exp.toString());
 		System.out.println(amistad.toString());
-		System.out.println(f.solve(exploradoras, amistad).toString());
 
-		Character[] exploradoras3 = {'a','b','c','d','e', 'f', 'g', 'h'};
+		String s = "[a, b, e, c, d] 2";
+		Ronda optima = f.solve(exploradoras,amistad); 
+		
+		assertEquals(s,optima.toString() + " " + optima.distanciaMaxima);
+		
+		System.out.println("Ok...");
+		
+		
+}
+	
 
-		amistad.removeAll(amistad);
+	
+	@Test
+	public void testSolve3(){
+		System.out.println("Test3...");
+		
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		Character[] exploradoras = {'a','b','c','d','e', 'f', 'g', 'h'};
+
 		amistad.add(new Amistad('a','f'));
 		amistad.add(new Amistad('a','b'));
 		amistad.add(new Amistad('b','g'));
@@ -60,43 +96,73 @@ public class FogonTest {
 		amistad.add(new Amistad('e','h'));
 		amistad.add(new Amistad('e','d'));
 
+		Fogon f = new Fogon();
+		ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
+		String  r1 = "[a, b, g, c, d, e, h, f] 3";
+		
+		Ronda optima = f.solve(exploradoras,amistad); 
+		
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima);
+		System.out.println(exp.toString());
 		System.out.println(amistad.toString());
-		System.out.println(f.solve(exploradoras3, amistad).toString());
+		System.out.println(optima.toString() + " " + optima.distanciaMaxima);
+		//System.out.println("Ok...");
 		
-		return;
-		
-	}
+}
 	
-//	@Test
+
 /*
+	@Test
+	public void testSolve4(){
+		System.out.println("Test4...");
+		
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		Character[] exploradoras = {'x','y','z'};
+
+		amistad.add(new Amistad('x','y'));
+		amistad.add(new Amistad('x','z'));
+
+		Fogon f = new Fogon();
+		ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
+		System.out.println(exp.toString());
+		System.out.println(amistad.toString());
+		String r1 = "[x, y, z] 1";
+		
+		Ronda optima = f.solve(exploradoras,amistad); 
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima);
+		System.out.println("Ok...");
+		
+}
+*/
+	
+	@Test
 	public void testArchivo() //lee del *.in y lo compara con el *.out
 	{
 		BufferedReader source  = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
 		BufferedReader control = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.out" ) ) );
-		
-		HashSet<Amistad> amistades = new HashSet<Amistad>();
-		Character[] exploradoras = new Character[27];
+
 	    String line;
-	    String amistad;
-	    int indice = 0;
-	    char c = '\0'; //Me guardo la primera, este es el valor nulo para inicializar la variable
-	    while ( ( line = source.readLine() ) != null ) { //Por cada l�nea en el archivo
-	        StringTokenizer st = new StringTokenizer(line, ";"); //La separo entre amistades
-	        while ( st.hasMoreTokens() ) { //Por cada amistad
-	        	amistad = st.nextToken();
-	        	exploradoras[indice] = amistad.charAt(0); //Agrego el caracter/exploradora
-	        	indice++;
-	        	for (int i = 0; i < amistad.length(); i++) //Recorro la amistad
-	        	{
-	        		if (i == 0)
-	        			c = amistad.charAt(i);
-	        		else if (i > 2) //salteo el espacio en blanco
-	        			amistades.add(new Amistad(c, amistad.charAt(i))); //Agrego amistad al primer caracter/exploradora
-	        	}
-	        }
-	     //solve.toString() = Ac� llamo al solve con las exploradoras y amistades ya armadas
-	     //assertEquals( control.readLine(), solve ) //comparo el resultado con el output esperado
+	    String out;
+	    Fogon f = new Fogon();
+	    try
+	    {
+	    while ( ( line = source.readLine() ) != null ) { //Por cada linea en el archivo
+	    	Separar sep = new Separar(line);
+	        //System.out.println(sep.amigas.toString());
+	        //System.out.println(sep.exploradora.toString());
+	    	//System.out.println(sep.amigas.toString());
+	    	ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(sep.exploradora));
+	        Ronda optima = f.solve(sep.exploradora, sep.amigas);
+//	        out = control.readLine();
+//	        System.out.println(exp.toString());
+//	        System.out.println(sep.amigas.toString());
+//	        System.out.println(optima.toString() + " " + optima.distanciaMaxima);
+	        System.out.println(line);
+	        //System.out.println(out);
+	        assertEquals(control.readLine(), optima.toString() + " " + optima.distanciaMaxima); //Formato: "[a, b, ..., z] distMax" 
+	    }
+	    }
+    catch(Exception e){
 	    }
 	}
-	*/
 }

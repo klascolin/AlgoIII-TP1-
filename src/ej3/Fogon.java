@@ -29,8 +29,12 @@ import java.util.HashSet;
 	Ronda rondaAux = new Ronda();
 	
 	ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
-
+	
+	rondaAux.add('a');
+	exp.remove('a');
+	
 	sentarExploradoras(exp,rondaAux,exp.size());
+	
 	
 
 	return rondaOptima;

@@ -20,7 +20,6 @@ public class FogonTest {
 
 	@Test
 	
-	
 	public void testSolve(){
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		
@@ -55,6 +54,15 @@ public class FogonTest {
 		
 		return;
 		
+	}
+	
+	@Test
+	
+	public void pepe(){
+		for (i=0;i<1000;i++){
+			testSolve();
+	
+		}
 	}
 	
 }
