@@ -44,6 +44,24 @@ public class FogonTest {
 		
 		System.out.println(amistad.toString());
 		System.out.println(f.solve(exploradoras, amistad).toString());
+
+		Character[] exploradoras3 = {'a','b','c','d','e', 'f', 'g', 'h'};
+
+		amistad.removeAll(amistad);
+		amistad.add(new Amistad('a','f'));
+		amistad.add(new Amistad('a','b'));
+		amistad.add(new Amistad('b','g'));
+		amistad.add(new Amistad('b','c'));		
+		amistad.add(new Amistad('d','g'));
+		amistad.add(new Amistad('d','c'));
+		amistad.add(new Amistad('f','a'));
+		amistad.add(new Amistad('f','g'));
+		amistad.add(new Amistad('f','h'));
+		amistad.add(new Amistad('e','h'));
+		amistad.add(new Amistad('e','d'));
+
+		System.out.println(amistad.toString());
+		System.out.println(f.solve(exploradoras3, amistad).toString());
 		
 		return;
 		
