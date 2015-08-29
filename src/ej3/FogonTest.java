@@ -3,11 +3,13 @@ package ej3;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.StringTokenizer;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -162,38 +164,21 @@ public class FogonTest {
 		
 }
 	
-
-	
-/*	
 	@Test
-	public void testArchivo() //lee del *.in y lo compara con el *.out
+	public void testEscrito() throws IOException //lee del *.in y escribe en el *.out 
 	{
-		BufferedReader source  = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
-		BufferedReader control = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.out" ) ) );
-
+		//Los archivos están en /bin/ej3/
+		BufferedReader is = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
+	    BufferedWriter os = new BufferedWriter( new FileWriter( getClass().getResource("").getPath() + "Tp1Ej3.out") );
 	    String line;
-	    String out;
-	    Fogon f = new Fogon();
-	    try
-	    {
-	    while ( ( line = source.readLine() ) != null ) { //Por cada linea en el archivo
-	    	Separar sep = new Separar(line);
-	        //System.out.println(sep.amigas.toString());
-	        //System.out.println(sep.exploradora.toString());
-	    	//System.out.println(sep.amigas.toString());
-	    	ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(sep.exploradora));
-	        Ronda optima = f.solve(sep.exploradora, sep.amigas);
-//	        out = control.readLine();
-//	        System.out.println(exp.toString());
-//	        System.out.println(sep.amigas.toString());
-//	        System.out.println(optima.toString() + " " + optima.distanciaMaxima);
-	        System.out.println(line);
-	        //System.out.println(out);
-	        assertEquals(control.readLine(), optima.toString() + " " + optima.distanciaMaxima); //Formato: "[a, b, ..., z] distMax" 
+	    while ( ( line = is.readLine() ) != null ) {
+	       Separar sep = new Separar(line);
+	       Fogon f = new Fogon();
+	       Ronda optima = f.solve(sep.exploradora, sep.amigas);
+	       os.append(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
+	       os.append(System.lineSeparator());
+	       System.out.println(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
 	    }
-	    }
-    catch(Exception e){
-	    }
+	    os.close();
 	}
-*/	
 }
