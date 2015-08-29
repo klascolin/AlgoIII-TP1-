@@ -39,7 +39,7 @@ public class FogonTest {
 		String r1 = "[a, b, d, c, e] 2";
 		
 		Ronda optima = f.solve(exploradoras,amistad); 
-		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima);
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima(amistad));
 		
 	
 		System.out.println("Ok...");
@@ -68,7 +68,7 @@ public class FogonTest {
 		String s = "[a, b, e, c, d] 2";
 		Ronda optima = f.solve(exploradoras,amistad); 
 		
-		assertEquals(s,optima.toString() + " " + optima.distanciaMaxima);
+		assertEquals(s,optima.toString() + " " + optima.distanciaMaxima(amistad));
 		
 		System.out.println("Ok...");
 		
@@ -102,16 +102,16 @@ public class FogonTest {
 		
 		Ronda optima = f.solve(exploradoras,amistad); 
 		
-		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima);
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima(amistad));
 		System.out.println(exp.toString());
 		System.out.println(amistad.toString());
-		System.out.println(optima.toString() + " " + optima.distanciaMaxima);
+		System.out.println(optima.toString() + " " + optima.distanciaMaxima(amistad));
 		//System.out.println("Ok...");
 		
 }
 	
 
-/*
+
 	@Test
 	public void testSolve4(){
 		System.out.println("Test4...");
@@ -129,12 +129,42 @@ public class FogonTest {
 		String r1 = "[x, y, z] 1";
 		
 		Ronda optima = f.solve(exploradoras,amistad); 
-		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima);
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima(amistad));
+		System.out.println("Ok...");
+		
+	}
+	
+
+	@Test
+	public void testStress(){
+		System.out.println("TestStress...");
+		
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		Character[] exploradoras = {'a','b','c','d','e', 'f', 'g', 'h', 'i', 'j','k'};
+
+		amistad.add(new Amistad('a','f'));
+		amistad.add(new Amistad('a','b'));
+		amistad.add(new Amistad('b','g'));
+		amistad.add(new Amistad('b','c'));		
+		amistad.add(new Amistad('d','g'));
+		amistad.add(new Amistad('d','c'));
+		amistad.add(new Amistad('f','a'));
+		amistad.add(new Amistad('f','g'));
+		amistad.add(new Amistad('f','h'));
+		amistad.add(new Amistad('e','h'));
+		amistad.add(new Amistad('e','d'));
+
+		Fogon f = new Fogon();
+		
+		Ronda optima = f.solve(exploradoras,amistad); 
+		
 		System.out.println("Ok...");
 		
 }
-*/
 	
+
+	
+/*	
 	@Test
 	public void testArchivo() //lee del *.in y lo compara con el *.out
 	{
@@ -165,4 +195,5 @@ public class FogonTest {
     catch(Exception e){
 	    }
 	}
+*/	
 }

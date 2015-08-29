@@ -15,12 +15,42 @@ public class Ronda extends ArrayList<Character>{
 	super();	
 	}
 	
-public int  distanciaMax(HashSet<Amistad> amistad){
+	
+	
+public int distanciaMaxima(HashSet<Amistad> amistad){
 	
 	if (size() < 2 || amistad.size() == 0)
 		return 0;
 	//Selecciono el candidato a maximaDist
-	int maximaDist = 0;
+	int maximaDist = 1;
+	
+	//Creo iterador para mirar la lista:
+	ListIterator<Character> l1 = listIterator();
+
+	while(l1.hasNext()){
+		char e1 = l1.next();
+		ListIterator<Character> l2 = listIterator(l1.nextIndex());
+		char e2;
+		while(l2.hasNext() ){ 
+			e2 = l2.next();
+			Amistad r  = new Amistad(e2,e1);
+			int distancia = distancia(l1.nextIndex(),l2.nextIndex());
+			if(amistad.contains(r)){
+				if(distancia > maximaDist)
+					maximaDist = distancia;
+			}
+				
+		}
+	}	
+	return maximaDist;		
+}
+
+public int  sumaDistancias(HashSet<Amistad> amistad){
+	
+	/*if (size() < 2 || amistad.size() == 0)
+		return 0;
+	*/
+	int sumaDist = 0;
 	
 	//Creo iterador para mirar la lista:
 	ListIterator<Character> l1 = listIterator();
@@ -41,13 +71,13 @@ public int  distanciaMax(HashSet<Amistad> amistad){
 			Amistad r  = new Amistad(e2,e1);
 			int distancia = distancia(l1.nextIndex(),l2.nextIndex());
 			
-			//Si son amigas y la distancia es mayor que la que teniamos, es la nueva maximaDist
+			//Si son amigas acumulo la distancia
 			if(amistad.contains(r))
-				maximaDist = distancia + maximaDist;
+				sumaDist = distancia + sumaDist;
 			//Avanzo el iterador 2		
 		}
 	}	
-	return maximaDist;		
+	return sumaDist;		
 	}
 
 

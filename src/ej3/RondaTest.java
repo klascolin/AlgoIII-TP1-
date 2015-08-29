@@ -77,7 +77,7 @@ public class RondaTest {
 		Ronda r2 = new Ronda(Utils.parseArrayList( "a b c d e "));
 		System.out.println(r2.toString());
 		System.out.println(amistad.toString());
-		System.out.println(r2.distanciaMax(amistad));
+		System.out.println(r2.distanciaMaxima(amistad));
 		
 		//assertEquals(2,r2.distanciaMax(amistad));
 		
