@@ -1,10 +1,11 @@
  package ej3;
-import java.util.Arrays;
- import java.util.HashSet;
- import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.StringTokenizer;
  
  public class Separar {
- 	public Character[] exploradora;
+ 	public ArrayList<Character> exploradora;
  	public HashSet<Amistad> amigas;
  	public int cantidad;
  	
@@ -23,19 +24,17 @@ import java.util.Arrays;
  			while(n < m.length()){
  				e.add(m.charAt(n));
  				Amistad r = new Amistad(g.charAt(0), m.charAt(n));
-				boolean b = amigas.add(r);
-				if(b)
-					System.out.println(g.charAt(0) + " " + m.charAt(n));
 				amigas.add(r);
-//				if(b)
-//					System.out.println(g.charAt(0) + " " + m.charAt(n));
+				//if(b)
+				//	System.out.println(g.charAt(0) + " " + m.charAt(n));
+				amigas.add(r);
  				n++;
  			}
  		}
- 		exploradora = (Character[])e.toArray(new Character[0]);
-	//Esto lo hice dentro del algoritmo(en la parte de solve). Me parece que deberia ir ahi porque es 
- 	//"parte" de lo que debemos pagar por asumir que esta ordenada
- 		Arrays.sort(exploradora);
+ 		exploradora = new ArrayList<Character>(e);
+ 		//Esto lo hice dentro del algoritmo(en la parte de solve). Me parece que deberia ir ahi porque es 
+ 		//"parte" de lo que debemos pagar por asumir que esta ordenada
+ 		Collections.sort(exploradora);
  	}
  
  }

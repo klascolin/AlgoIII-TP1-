@@ -3,6 +3,9 @@ package ej3;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -453,40 +456,24 @@ public class FogonTest {
 		System.out.println(f.prueba);	
 		
 	}
-
 	
+    @Test
+    public void testEscrito() throws IOException //lee del *.in y escribe en el *.out
+    {
+        //Los archivos están en /bin/ej3/
+        BufferedReader is = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
+        BufferedWriter os = new BufferedWriter( new FileWriter( getClass().getResource("").getPath() + "Tp1Ej3.out") );
+        String line;
+        while ( ( line = is.readLine() ) != null ) {
+           Separar sep = new Separar(line);
+           Fogon f = new Fogon();
+           Ronda optima = f.solve(sep.exploradora, sep.amigas);
+           os.append(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
+           os.append(System.lineSeparator());
+           System.out.println(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
+        }
+        os.close();
+    }
 	
-	
-//Sigue tirando el error de la excepcion:S
-	
-	public void testArchivo() //lee del *.in y lo compara con el *.out
-	{
-		BufferedReader source  = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
-		BufferedReader control = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.out" ) ) );
-		
-		HashSet<Amistad> amistades = new HashSet<Amistad>();
-		Character[] exploradoras = new Character[27];
-	    String line;
-	    String amistad;
-	    int indice = 0;
-	    char c = '\0'; //Me guardo la primera, este es el valor nulo para inicializar la variable
-	    while ( ( line = source.readLine() ) != null ) { //Por cada lï¿½nea en el archivo
-	        StringTokenizer st = new StringTokenizer(line, ";"); //La separo entre amistades
-	        while ( st.hasMoreTokens() ) { //Por cada amistad
-	        	amistad = st.nextToken();
-	        	exploradoras[indice] = amistad.charAt(0); //Agrego el caracter/exploradora
-	        	indice++;
-	        	for (int i = 0; i < amistad.length(); i++) //Recorro la amistad
-	        	{
-	        		if (i == 0)
-	        			c = amistad.charAt(i);
-	        		else if (i > 2) //salteo el espacio en blanco
-	        			amistades.add(new Amistad(c, amistad.charAt(i))); //Agrego amistad al primer caracter/exploradora
-	        	}
-	        }
-	     //solve.toString() = Aca llamo al solve con las exploradoras y amistades ya armadas
-	     //assertEquals( control.readLine(), solve ) //comparo el resultado con el output esperado
-	    }
-	}
 		
 }
