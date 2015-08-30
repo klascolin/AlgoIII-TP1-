@@ -18,11 +18,9 @@ public class RondaTest {
 
 
 	@Test 	
-	public void distancia(){
+	public void testDistancia(){
 		
 		Ronda r = new Ronda(Utils.parseArrayList( "a b c d e"));
-		System.out.println(r.toString());
-		System.out.println(r.size());
 		
 		assertEquals(1,r.distancia(0, 1));
 		assertEquals(2,r.distancia(0, 2));
@@ -36,34 +34,34 @@ public class RondaTest {
 		assertEquals(1,r.distancia(1, 5));
 		assertEquals(1,r.distancia(1, 0));
 		
-		//Seguir todos contra todos...�?
+		//Seguir todos contra todos...
 	}
 	
 	@Test 
-	   public void distanciaMaxTestBasico() {
-		
+	public void minimizacionTestA() {
+		System.out.println("TestA(un caso basico)...");
 		
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
-		
-		//Prueba 1(un caso facil):
-		
+	
 		amistad.add(new Amistad('a','b'));
 		amistad.add(new Amistad('a','c'));
 		amistad.add(new Amistad('b','c'));
 		 
 		Ronda r = new Ronda(Utils.parseArrayList( "a b c"));
 			 
-		System.out.println(Utils.parseArrayList( "a b c "));
-		System.out.println(amistad.toString());
-
-	//	assertEquals(r.distanciaMax(amistad),1);
+		assertEquals(1,r.distanciaMaxima(amistad));
+		assertEquals(3,r.sumaDistancias(amistad));
 		
 		System.out.println("Ok...");
+		return;
+	}	
 		
-		//Prueba 2(catedra):
+	@Test
+	
+	public void minimizacionTestB() {
+		System.out.println("TestB(casos mas generales)...");
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		
-		amistad.removeAll(amistad);
-		assertEquals(amistad.size(),0);
 		amistad.add(new Amistad('a','b')); 
 		amistad.add(new Amistad('a','c')); 
 		amistad.add(new Amistad('a','d')); 
@@ -75,53 +73,47 @@ public class RondaTest {
 		amistad.add(new Amistad('c','e')); 
 		
 		Ronda r2 = new Ronda(Utils.parseArrayList( "a b c d e "));
-		System.out.println(r2.toString());
-		System.out.println(amistad.toString());
-		System.out.println(r2.distanciaMaxima(amistad));
+		assertEquals(2,r2.distanciaMaxima(amistad));
+		assertEquals(14,r2.sumaDistancias(amistad));
 		
-		//assertEquals(2,r2.distanciaMax(amistad));
+		Ronda r3 = new Ronda(Utils.parseArrayList( "a b d c e "));
+		assertEquals(2,r3.distanciaMaxima(amistad));
+		assertEquals(13,r3.sumaDistancias(amistad));
 		
-		//Prueba 3(catedra):
-		amistad.removeAll(amistad);
-		amistad.add(new Amistad('a','b'));
-		amistad.add(new Amistad('a','c'));
-		amistad.add(new Amistad('b','c'));
-		amistad.add(new Amistad('b','e'));
-		amistad.add(new Amistad('c','d'));
-		amistad.add(new Amistad('d','a'));
+		Ronda r4 = new Ronda(Utils.parseArrayList( "d e a b c "));
+		assertEquals(14,r4.sumaDistancias(amistad));
+		assertEquals(2,r4.distanciaMaxima(amistad));
 		
-		Ronda r3 = new Ronda(Utils.parseArrayList( "a b e c d "));
-		System.out.println(r2.toString());
-		System.out.println(amistad.toString());
-	
-		//assertEquals(2,r3.distanciaMax(amistad));
+		Ronda r5 = new Ronda(Utils.parseArrayList( "b c d e a "));
+		assertEquals(2,r5.distanciaMaxima(amistad));
+		assertEquals(14,r5.sumaDistancias(amistad));
 		
-		//Prueba 3(catedra):
-			amistad.removeAll(amistad);
-			amistad.add(new Amistad('a','b'));
-			amistad.add(new Amistad('a','f'));
-			amistad.add(new Amistad('b','c'));
-			amistad.add(new Amistad('b','g'));
-			amistad.add(new Amistad('d','g'));
-			amistad.add(new Amistad('d','c'));
-			amistad.add(new Amistad('f','g'));
-			amistad.add(new Amistad('f','h'));
-			amistad.add(new Amistad('e','h'));
-			amistad.add(new Amistad('e','d'));
-			
 
-			Ronda r4 = new Ronda(Utils.parseArrayList( "a b e c d e f g h"));
-			System.out.println(r4.toString());
-			System.out.println(amistad.toString());
+		System.out.println("Ok...");
 		
-		//	assertEquals(3,r4.distanciaMax(amistad));
+		return;			
+	}
+	
+	@Test 
+	public void minimizacionTestBorder(){
 		
-			
-			System.out.println("Listo, todo peola");
+		//Algun otro???
+		System.out.println("TestBorder...");
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		
-		 
-		 
-		 
-	    	      
-	   }
+		Ronda r1 = new Ronda(Utils.parseArrayList( "a b c d e "));
+		assertEquals(0,r1.distanciaMaxima(amistad));
+		assertEquals(0,r1.sumaDistancias(amistad));
+		
+		Ronda r2 = new Ronda(Utils.parseArrayList( " "));
+		assertEquals(0,r2.distanciaMaxima(amistad));
+		assertEquals(0,r2.sumaDistancias(amistad));
+		
+		Ronda r3 = new Ronda(Utils.parseArrayList( "a"));
+		assertEquals(0,r3.distanciaMaxima(amistad));
+		assertEquals(0,r3.sumaDistancias(amistad));	
+		
+		System.out.println("Ok...");
+		return;
+	}
 }
