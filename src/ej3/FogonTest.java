@@ -470,7 +470,7 @@ public class FogonTest {
            Ronda optima = f.solve(sep.exploradora, sep.amigas);
            os.append(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
            os.append(System.lineSeparator());
-           System.out.println(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
+           System.out.println(optima.distanciaMaxima(sep.amigas)+" " + optima.toString());
         }
         os.close();
     }
