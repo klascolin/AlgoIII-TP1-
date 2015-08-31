@@ -1,7 +1,7 @@
 package ej2;
+
 import java.util.PriorityQueue;
 import java.util.Collections;
-//import java.util.Comparator;
 
 public class Arreglo {
 	private PriorityQueue<Integer> menor;
@@ -12,71 +12,41 @@ public class Arreglo {
 	public Arreglo(int n) {
 		mediana = 0;
 		tamaño = 0;
-		menor = new PriorityQueue<Integer>(n/2,Collections.reverseOrder());
-		mayor = new PriorityQueue<Integer>(n/2);
+		menor = new PriorityQueue<Integer>(((n % 2 == 0) ? n / 2 : (n / 2 + 1)), Collections.reverseOrder());
+		mayor = new PriorityQueue<Integer>(((n % 2 == 0) ? n / 2 : (n / 2 + 1)));
 	}
-	public int mediana(){
-//		if((tamaño%2)==1){
-			return mediana;
-/*		}
-		else{
-			if(menor.size()>mayor.size()){
-				return (mediana+menor.peek())/2;
-			}
-			else{
-				return (mediana+mayor.peek())/2;
-			}
-		}
-*/		
+	
+	public int mediana(){ //O(1)
+		return mediana;
 	}
+	
 	public void agregar(int n){
-		if(tamaño == 0){
+		if(tamaño == 0) //O(1)
 			mediana = n;
-			tamaño++;
-		}
-		else if((tamaño % 2) == 1){
-			if(n < mediana){
-				menor.add(n);
-				mayor.add(mediana);
-				mediana = (menor.peek() + mayor.peek()) / 2;
-//				menor.add(n);
-				tamaño++;
+		else if((tamaño % 2) == 1){ //Todas las condiciones tienen la misma complejidad O(log (n / 2))
+			if(n < mediana){ //O(log (n/2))
+				menor.add(n); //O(log (n/2))
+				mayor.add(mediana); //O(log (n/2))
+				mediana = (menor.peek() + mayor.peek()) / 2; //O(1)
 			}
 			else{
 				mayor.add(n);
 				menor.add(mediana);
 				mediana = (menor.peek() + mayor.peek()) / 2;
-//				mayor.add(n);
-				tamaño++;
 			}
 		}
 		else{
-		/*	if(n==mediana){
-				if(menor.size()>mayor.size()){
-					mayor.add(n);
-					tamaño++;
-				}
-				else{
-					menor.add(n);
-					tamaño++;
-				}
-			}
-			else*/ if(n < mediana){
+			if(n < mediana){
 				menor.add(n);
-//				mayor.add(mediana);
-				int m = menor.poll();
-				mediana = m;
-				tamaño++;
+				mediana = menor.poll();
 			}
 			else{
 				mayor.add(n);
-//				menor.add(mediana);
-				int m = mayor.poll();
-				mediana = m;
-				tamaño++;
+				mediana = mayor.poll();
 			}
 		}
-		System.out.print(menor.size() + "," + mayor.size() + "|");
+		tamaño++;
+		//System.out.print(menor.size() + "," + mayor.size() + "|");
 	}
 
 }
