@@ -12,6 +12,7 @@ public class Arreglo {
 	public Arreglo(int n) {
 		mediana = 0;
 		tamaño = 0;
+		//El tamaño del heap es n / 2 + 1 si n es impar
 		menor = new PriorityQueue<Integer>(((n % 2 == 0) ? n / 2 : (n / 2 + 1)), Collections.reverseOrder());
 		mayor = new PriorityQueue<Integer>(((n % 2 == 0) ? n / 2 : (n / 2 + 1)));
 	}
@@ -24,7 +25,7 @@ public class Arreglo {
 		if(tamaño == 0) //O(1)
 			mediana = n;
 		else if((tamaño % 2) == 1){ //Todas las condiciones tienen la misma complejidad O(log (n / 2))
-			if(n < mediana){ //O(log (n/2))
+			if (n < mediana){ 
 				menor.add(n); //O(log (n/2))
 				mayor.add(mediana); //O(log (n/2))
 				mediana = (menor.peek() + mayor.peek()) / 2; //O(1)
@@ -36,7 +37,7 @@ public class Arreglo {
 			}
 		}
 		else{
-			if(n < mediana){
+			if (n < mediana){
 				menor.add(n);
 				mediana = menor.poll();
 			}
