@@ -1,0 +1,112 @@
+1)Describir detalladamente el problema a resolver dando ejemplos del mismo y sus soluciones.
+
+Descripcion del problema:
+Se tiene un grupo de exploradoras tales que algunas de ellas son amigas entre sÃ­(la relacion es simetrica)
+El problema consiste en obtener a partir de una lista de exploradoras, con forma de ronda y un peso entre cada par de elementos determinado por la distancia entre estos, 
+obtener una permutacion de ella tal que se haya minimizado la suma de los pesos de todos los elementos. Se debe devolver dicha lista en el orden que cumpla con 
+la condicion y un numero correspondiente a el peso maximo entre dos elementos de la ronda obtenida. En caso de existir mas de una solucion, se debe devolver la de menor
+orden lexicografico.
+Notar que si dos elementos no estan relacionados, no son amigas, entonces el peso es nulo
+
+Ejemplos:
+A)Se tiene la siguiente lista, vista como una ronda:
+l = [a, b, c, d] y la siguiente relacion de amistad a = {(a,c)(c,d)}
+La solucion debe ser: l' = [a, b, d, c] ya que d(a,c)  y d(d,c) son uno, que es lo minimo que se puede conseguir. Es importante ver que la distancia
+,al ser una ronda, es siempre el minimo {posicion(y) - posicion(x),longitudRonda - posicion(y) +posicion(x)} con x e y  dos elementos cualesquiera .
+Luego, esta solucion es la mas chica ordenada de forma lexicografica.
+Notar que, entonces, la suma de las distancias totales, que fue minimizada, es : d(a,c)+d(d,c)+0 = 2.
+Finalmente, el output debe ser: 1 [a, b, d, c] pues 1 es la distancia maxima entre cualquier par de elementos.
+
+B) Se tiene la siguiente lista, vista como una ronda:
+l = [a, b, c] y la siguiente relacion de amistad a = {(a,c)}
+La solucion debe ser: l' = [a,b,c] ya que d(a,c) = 1. A
+Finalmente, el output debe ser: 1 [a, b, c] pues 1 es la distancia maxima entre cualquier par de elementos y la lista es la menor de todas las que cumplen.
+
+C) Se tiene la siguiente lista, vista como una ronda:
+l = [a,b,c,d,e] y la siguiente relacion de amistad a = {(a,b)(a,c)(a,d)(a,e)(c,e)}.
+La solucuion debe ser: l' = 2 [a,b,c,e,d]. Notemos que si bien la lista [a,b,d,c,e] cumple con ser una minimizacion, la misma es mayor lexicograficamente que l'. Podemos ver facilmente que como a esta relacionada con todas, no importa el orden en el que se pongan, la suma de las distancias no cambia. Sin embargo, al pedir que (c,e) tambien sean amigas, obliga a tener que elegir un orden apropiado para estas dos ultimas letras. Basicamente, deben ir "pegadas". Luego, el mejor lugar para ponerlas es aquella que acerque la "e" hacia la "c", para obtener la menor de las posibles soluciones.
+
+
+2)Explicar de forma clara, sencilla, estructurada y concisa las ideas desarrolladas para la resolucion del problema usando pseudocodigo  y/o lenguaje coloquial
+
+Estructura:
+Para resolver el problema, se decidió dividirlo en un conjunto de modulos,clases, para poder abstraer mejor los detalles que no fuesen inherentes al problema principal en si, el de la minimizacion de las distancias.
+En este sentido, se implementaron tres clases: Amistad,Ronda y Fogon. Este es el orden de abstraccion, es decir la ultima mencionada utiliza los servicios de las de abajo, y asi sucesivamente. A continuacion se muestra la estructura y jerarquia de las mismas. 
+	(Hacer esquema con los miembros de cada clase)
+Ideas centrales:
+
+Basicamente, implementaremos un algoritmo que haga backtracking sobre las posibles formas de ordenar una ronda de exploradoras y nos quedaremos con aquella que minimice la suma de las distancias. Esta misma sera la que quedara referenciada por el campo rondaOptima de la clase.
+Para esto, cuando el algoritmo de backtracking haye una primera permutacion de la ronda, esta sera nuestra candidata a optima. Luego,el algoritmo ira explorando nuevas soluciones posibles. Cuando llegue a una hoja del arbol de posibilidades, es decir, cuando quede definida una ronda que es permutacion de la original se preguntara si la nueva suma de distancias es mejor. Si es asi, habremos obtenido una nueva rondaOptima. De esta forma continuaremos hasta haber inspeccionado todas las posibles soluciones que sean relevantes(que podrian no ser todas, por las posibles podas).
+
+Mas en detalle, diremos que la clase fogon cuenta con dos funciones: Solve y SentarExploradoras, que hace el trabajo mencionado arriba.
+La primera recibirá una lista(ArrayList) de exploradoras(Character) y un conjunto de amistades(HashSet<Amistad>). A partir de esto:
+
+Ordenar la lista alfabeticamente
+
+Verificara si hay amistades definidas en el conjunto. 
+
+Si esto no fuese cierto, la lista de exploradoras es la solucion optima. Generamos una ronda igual a dicha lista y la instanciamos en rondaOptima.
+
+Si fuese cierto, y la lista de exploradoras es no vacia, definimos una rondaAuxiliar a la cual le agregamos el primer elemento de la lista de exploradoras. Tambien se remueve dicho elemento de la lista. Finalmente, se llama a la funcion SentarExploradoras(lista exploradoras, rondaAuxiliar,Tam(exploradoras)) que instanciara el miembro rondaOptima con la solucion
+Devolvera una referencia a el miembro rondaOptima
+  
+De esta funcion podemos remarcar dos aspectos:
+La funcion de SentarExploradoras usa, como precondicion, que la lista este ordenada. La razon se vera en detalle luego, pero ,por ahora, diremos que el algoritmo de backtracking mira, en cada nivel de la recursion, las posibles elecciones de letras(exploradoras) en orden.
+Ademas, como la solucion optima debe estar ordenada lexicograficamente, en principio, una buena decision podria ser fijar como primer elemento de la ronda,vista como lista, a la primer exploradora(donde la primera es la menor alfabeticamente, pues ya esta ordenada). Esto evitara, en el backtracking, tener que mirar el resto de las posibles elecciones para la primer posicion y comenzar desde la siguiente.
+
+Veamos con detenimiento el algoritmo de SentarExploradoras
+(Esto va en pseudocodigo de latex)
+
+sentarExploradoras(Lista exploradoras, Ronda rondaAux, int tam)		
+Verificamos si rondaAux esta completa,i.e si ya se formo una rama	
+ IF{ Tamaño(rondaAux) =tam + 1 )}			
+
+//Si la solucion es mejor que la optima actual o es la primera ronda que se arma, pasa a ser la nueva optima:
+
+ if( Peso(rondaAux) < Peso(rondaOptima)  OR Vacia?(rondaOptima))
+ 	rondaOptima = rondaAux
+ 	retornar
+				
+		
+//Si no esta completa, es decir todavia quedan decisiones por tomar, //estamos en un nuevo paso de la recursion y tenemos que explorar todas las elecciones disponibles en exploradoras, para este nivel del arbol.
+
+for(i = 0, i < Tamaño(exploradoras),i++)
+	//Elegimos el primero de la lista, que debe ser el elemento mas 	chico disponible en el nivel
+	eleccion = exploradoras[i]
+	Agregar(eleccion,rondaAux)
+				
+	//PODA1: Se aplica ya sobre el final. Si vamos a comenzar a 	mirar las soluciones del tipo [a,ultima,...()] entonces, 	podamos esa rama(ver exp mas adelante)
+	if(Tamaño(rondaAux) = 2 ^ i es el ultimo indice)
+		salir	del bucle
+			
+	//PODA2: Si la distancia de la ronda actual ya es peor que la 	optima, podar rama
+	if(Peso(rondaAux) >= Peso(rondaOptima)AND !Vacia?(rondaOptima))
+		Remover(rondaAux,eleccion)				
+	else
+	
+	//Si no se pudo podar, hay que explorar las posibles elecciones 	//del nivel.
+	Remover(exploradoras,eleccion)
+
+	//Sacamos al elemento eleccion de la lista de 		//exploradoras, para reducir el espacio de elecciones del 	//proximo 	nivel	y garantizar que no se pueda volver a agarrar 	//mas abajo en la recursion	
+
+	//Hacemos la llamada recursiva para continuar expandiendo la 	//rondaAux y hallar una nueva solucion
+	sentarExploradoras(exploradoras, rondaAux,tam);
+	
+	//Al regresar, habremos explorado el subarbol generado a partir 	//de nuestra ultima decision
+	
+	ultima = RemoverUltima(rondaAux)
+	AgregarAdelante(exploradoras,eleccion)
+
+	//Sacamos la ultima eleccion de la rondaAux y mantenemos el 	//invariante ,colocando el elemento al comienzo de la misma 	//para mantenerla ordenada y para que quede disponible para las 	//subsiguientes elecciones que se haran en el proximo 	ciclo(otra forma de verlo es pensar que tiene que estar lista 	para las exploraciones que van a hacer sus hermanos, i.e las 	demas posibles decisiones del mismo	nivel	 
+end for
+	
+
+retornar
+
+
+
+
+
+
+
+3)Justi?car por que el procedimiento desarrollado en el punto anterior resuelve efectivamente el problema
