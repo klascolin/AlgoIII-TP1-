@@ -274,7 +274,7 @@ public class FogonTest {
 			
 			Fogon f = new Fogon();	
 			System.out.println( f.solve(exp,amistad).toString()); 
-			System.out.println(f.prueba);
+	
 			
 			
 		}
@@ -301,6 +301,10 @@ public class FogonTest {
 		
 	}
 
+	@Test
+	public void testn(){
+		this.PeorCaso(10);
+	}
 	public void testPromedioMejorCaso(int n){
 		for(int i = 0;i<100;i++)
 			mejorCaso(n);
@@ -374,7 +378,7 @@ public class FogonTest {
 		
 		System.out.println(f.solve(exp,amistad));
 		System.out.println("Ok...");
-		System.out.println(f.prueba);
+		
 		
 		
 	}
@@ -395,7 +399,7 @@ public class FogonTest {
 		
 		System.out.println(f.solve(exp,amistad)); 
 		System.out.println("Ok...");
-		System.out.println(f.prueba);
+		
 		
 		
 	}
@@ -417,7 +421,7 @@ public class FogonTest {
 		
 		Fogon f = new Fogon();	
 		System.out.println( f.solve(exp,amistad).toString()); 
-		System.out.println(f.prueba);
+		
 		
 		
 	}
@@ -435,7 +439,7 @@ public class FogonTest {
 		
 		Fogon f = new Fogon();	
 		System.out.println( f.solve(exp,amistad).toString()); 
-		System.out.println(f.prueba);
+		
 	
 		
 	}
@@ -453,7 +457,7 @@ public class FogonTest {
 		
 		Fogon f = new Fogon();	
 		System.out.println( f.solve(exp,amistad).toString()); 
-		System.out.println(f.prueba);	
+		
 		
 	}
 	

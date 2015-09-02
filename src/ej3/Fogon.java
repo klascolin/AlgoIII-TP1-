@@ -1,4 +1,5 @@
 package ej3;
+import static org.junit.Assert.assertEquals;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +14,7 @@ import java.util.HashSet;
 
 	private Ronda rondaOptima;
 
-	public  int prueba;
+	
 	private HashSet<Amistad> amigas;
 
 
@@ -28,7 +29,7 @@ import java.util.HashSet;
 			
 	//De alguna manera inicializar el conjunto de amigas
 
-	amigas = amistades;
+	amigas = amistades;	
 		
 	Ronda rondaAux = new Ronda();
 
@@ -38,10 +39,13 @@ import java.util.HashSet;
 	if(amistades.isEmpty())
 		rondaOptima = new Ronda(exploradoras);
 	else{
-		if(!exploradoras.isEmpty()){
+		//Todas las rondas que son solucion comienzan con la primer letra. 
+		//La sacamos para evitar mirar soluciones de mas
+		if(!exploradoras.isEmpty()){	
 			rondaAux.add(exploradoras.get(0));
 			exploradoras.remove(0);
 		}
+		//Llamamos a la funcion que hace backtracking para que arme la rondaOptima.
 		sentarExploradoras(exploradoras,rondaAux,exploradoras.size());
 	}
 	return rondaOptima;
@@ -50,10 +54,10 @@ import java.util.HashSet;
 	//Metodos:
 	
 	//PRE: exploradoras debe estar ordenado alfabeticamente
-	
+	 
 	public void sentarExploradoras(ArrayList<Character> exploradoras, Ronda rondaAux, int tam){
 		
-		//Se pueden agregar "podas"? Si la vamos armando y ya vemos que una distancia es mayor que la optima actual...
+		
 		
 		//Veo si es una ronda completa:
  			if(rondaAux.size() == tam + 1 ){  //O(1)			
@@ -70,11 +74,18 @@ import java.util.HashSet;
 				char e = exploradoras.get(i);
 				rondaAux.add(e);
 				
-				//PODA: Si la distancia de la rama es mayor a la optima, la cortamos
-				if((rondaAux.sumaDistancias(amigas) >= rondaOptima.sumaDistancias(amigas)) && (rondaOptima.size() != 0 )){ // DistanciaMax debe ser O((e^2)*a)
-					rondaAux.remove(rondaAux.size() - 1);
-					prueba++;
+				//PODA1:Recortamos la rama que mira la ronda "al reves"
+				if(rondaAux.size() == 2 && i == exploradoras.size()-1 ){
+					System.out.println("PODAA");
+					break;
+					
 				}
+				
+				//PODA2: Si la distancia de la ronda actual ya es peor que la optima, 
+				if((rondaAux.sumaDistancias(amigas) >= rondaOptima.sumaDistancias(amigas)) && (rondaOptima.size() != 0 )){ 
+					rondaAux.remove(rondaAux.size() - 1);
+				}
+				
 				else{
 			
 				//Lo sacamos, para que en el proximo nivel de recursion, no este disponible.
@@ -86,11 +97,11 @@ import java.util.HashSet;
 						
 				//Sacamos de la ronda la ultima eleccion y la recordamo
 				
-				char ultima = rondaAux.remove(rondaAux.size() - 1);
-				
+				char ult = rondaAux.remove(rondaAux.size() - 1);
+				assertEquals(ult,e);
 				//La volvemos a agregar adelante de la lista
 				//Esto permite mantener invariable la lista a los ojos del nivel de arriba del backtrack
-				exploradoras.add(i, ultima);
+				exploradoras.add(i,e);
 			 }
 		}	
 		return;
