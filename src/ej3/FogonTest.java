@@ -233,60 +233,59 @@ public class FogonTest extends AbstractBenchmark  {
 }
 	
 	public void testWarmUpMejorCaso(int n){
-		for(int i = 0;i<100;i++)
+		for(int i = 0;i<20;i++)
 			mejorCaso(n);
 		
 	}
 
 	public void testWarmUPeorCaso(int n){
-		for(int i = 0;i<100;i++)
+		for(int i = 0;i<20;i++)
 			PeorCaso(n);
 		
 	}
 
 	public void testWarmUpCasoSinIntencionalidad(int n){
-		for(int i = 0;i<100;i++)
+		for(int i = 0;i<20;i++)
 			CasoSinIntencionalidad(n);
 		
 	}
 
 	//Test Performance:
-	@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 2)
-	@Test
-	public void testn2(){
-		this.PeorCaso(5);
+	@Test public void warmup1(){
+		this.testWarmUPeorCaso(2);
 	}
+	@Test
+	public void testn2Peor(){
+		this.testPromedioPeorCaso(2);
+	}
+	@Test public void warmup2(){
+		this.testWarmUpMejorCaso(2);
+	}
+	@Test
+	public void testn2Mejor(){
+		this.testPromedioMejorCaso(2);
+	}
+	@Test public void warmup3(){
+		this.testWarmUpCasoSinIntencionalidad(2);
+	}
+	@Test
+	public void testn2SinI(){
+		this.testPromedioSinIntencionalidad(2);
+	}
+	
 	public void testPromedioMejorCaso(int n){
-		for(int i = 0;i<100;i++)
+		for(int i = 0;i<500;i++)
 			mejorCaso(n);
-		for(int i = 0;i<100;i++)
-			mejorCaso(n);
-		for(int i = 0;i<100;i++)
-			mejorCaso(n);
-		for(int i = 0;i<100;i++)
-			mejorCaso(n);
-		for(int i = 0;i<100;i++)
-			mejorCaso(n);
-		//Tomar el promedio
+		
 		System.out.println("Ok...");
 		
-		
-		
-		//Tomar el promedio, omitiendo la primer corrida
-		System.out.println("Ok...");
 		
 }
  		
 	public void testPromedioPeorCaso(int n){
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
+		
+		//luego tomamos el promedio de ejecucion dividiendo por 500 
+		for(int i = 0;i<500;i++)
 			PeorCaso(n);
 		
 		System.out.println("Ok...");
@@ -294,17 +293,9 @@ public class FogonTest extends AbstractBenchmark  {
 }	
 	
 	public void testPromedioSinIntencionalidad(int n){
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-		for(int i = 0;i<100;i++)
-			PeorCaso(n);
-
+		for(int i = 0;i<500;i++)
+			this.CasoSinIntencionalidad2(n);
+		
 		System.out.println("Ok...");
 		
 }	
