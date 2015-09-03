@@ -1,7 +1,7 @@
-1)Describir detalladamente el problema a resolver dando ejemplos del mismo y sus soluciones.
 
-Descripcion del problema:
-Se tiene un grupo de exploradoras tales que algunas de ellas son amigas entre sí(la relacion es simetrica)
+
+1)Descripcion del problema:
+Se tiene un grupo de exploradoras tales que algunas de ellas son amigas entre sÃ­(la relacion es simetrica)
 El problema consiste en obtener a partir de una lista de exploradoras, con forma de ronda y un peso entre cada par de elementos determinado por la distancia entre estos, 
 obtener una permutacion de ella tal que se haya minimizado la suma de los pesos de todos los elementos. Se debe devolver dicha lista en el orden que cumpla con 
 la condicion y un numero correspondiente a el peso maximo entre dos elementos de la ronda obtenida. En caso de existir mas de una solucion, se debe devolver la de menor
@@ -27,10 +27,10 @@ l = [a,b,c,d,e] y la siguiente relacion de amistad a = {(a,b)(a,c)(a,d)(a,e)(c,e
 La solucuion debe ser: l' = 2 [a,b,c,e,d]. Notemos que si bien la lista [a,b,d,c,e] cumple con ser una minimizacion, la misma es mayor lexicograficamente que l'. Podemos ver facilmente que como a esta relacionada con todas, no importa el orden en el que se pongan, la suma de las distancias no cambia. Sin embargo, al pedir que (c,e) tambien sean amigas, obliga a tener que elegir un orden apropiado para estas dos ultimas letras. Basicamente, deben ir "pegadas". Luego, el mejor lugar para ponerlas es aquella que acerque la "e" hacia la "c", para obtener la menor de las posibles soluciones.
 
 
-2)Explicar de forma clara, sencilla, estructurada y concisa las ideas desarrolladas para la resolucion del problema usando pseudocodigo  y/o lenguaje coloquial
+2)Descripcion del algoritmo 
 
 Estructura:
-Para resolver el problema, se decidi� dividirlo en un conjunto de modulos,clases, para poder abstraer mejor los detalles que no fuesen inherentes al problema principal en si, el de la minimizacion de las distancias.
+Para resolver el problema, se decidió dividirlo en un conjunto de modulos,clases, para poder abstraer mejor los detalles que no fuesen inherentes al problema principal en si, el de la minimizacion de las distancias.
 En este sentido, se implementaron tres clases: Amistad,Ronda y Fogon. Este es el orden de abstraccion, es decir la ultima mencionada utiliza los servicios de las de abajo, y asi sucesivamente. A continuacion se muestra la estructura y jerarquia de las mismas. 
 	(Hacer esquema con los miembros de cada clase)
 Ideas centrales:
@@ -39,7 +39,7 @@ Basicamente, implementaremos un algoritmo que haga backtracking sobre las posibl
 Para esto, cuando el algoritmo de backtracking haye una primera permutacion de la ronda, esta sera nuestra candidata a optima. Luego,el algoritmo ira explorando nuevas soluciones posibles. Cuando llegue a una hoja del arbol de posibilidades, es decir, cuando quede definida una ronda que es permutacion de la original se preguntara si la nueva suma de distancias es mejor. Si es asi, habremos obtenido una nueva rondaOptima. De esta forma continuaremos hasta haber inspeccionado todas las posibles soluciones que sean relevantes(que podrian no ser todas, por las posibles podas).
 
 Mas en detalle, diremos que la clase fogon cuenta con dos funciones: Solve y SentarExploradoras, que hace el trabajo mencionado arriba.
-La primera recibir� una lista(ArrayList) de exploradoras(Character) y un conjunto de amistades(HashSet<Amistad>). A partir de esto:
+La primera recibirá una lista(ArrayList) de exploradoras(Character) y un conjunto de amistades(HashSet<Amistad>). A partir de esto:
 
 Ordenar la lista alfabeticamente
 
@@ -59,8 +59,9 @@ Veamos con detenimiento el algoritmo de SentarExploradoras
 
 sentarExploradoras(Lista exploradoras, Ronda rondaAux, int tam)		
 Verificamos si rondaAux esta completa,i.e si ya se formo una rama	
- IF{ Tama�o(rondaAux) =tam + 1 )}			
+ IF{ Tamaño(rondaAux) =tam + 1 )}			
 
+//El caso "base":
 //Si la solucion es mejor que la optima actual o es la primera ronda que se arma, pasa a ser la nueva optima:
 
  if( Peso(rondaAux) < Peso(rondaOptima)  OR Vacia?(rondaOptima))
@@ -70,13 +71,13 @@ Verificamos si rondaAux esta completa,i.e si ya se formo una rama
 		
 //Si no esta completa, es decir todavia quedan decisiones por tomar, //estamos en un nuevo paso de la recursion y tenemos que explorar todas las elecciones disponibles en exploradoras, para este nivel del arbol.
 
-for(i = 0, i < Tama�o(exploradoras),i++)
+for(i = 0, i < Tamaño(exploradoras),i++)
 	//Elegimos el primero de la lista, que debe ser el elemento mas 	chico disponible en el nivel
 	eleccion = exploradoras[i]
 	Agregar(eleccion,rondaAux)
 				
 	//PODA1: Se aplica ya sobre el final. Si vamos a comenzar a 	mirar las soluciones del tipo [a,ultima,...()] entonces, 	podamos esa rama(ver exp mas adelante)
-	if(Tama�o(rondaAux) = 2 ^ i es el ultimo indice)
+	if(Tamaño(rondaAux) = 2 ^ i es el ultimo indice)
 		salir	del bucle
 			
 	//PODA2: Si la distancia de la ronda actual ya es peor que la 	optima, podar rama
@@ -97,16 +98,66 @@ for(i = 0, i < Tama�o(exploradoras),i++)
 	ultima = RemoverUltima(rondaAux)
 	AgregarAdelante(exploradoras,eleccion)
 
-	//Sacamos la ultima eleccion de la rondaAux y mantenemos el 	//invariante ,colocando el elemento al comienzo de la misma 	//para mantenerla ordenada y para que quede disponible para las 	//subsiguientes elecciones que se haran en el proximo 	ciclo(otra forma de verlo es pensar que tiene que estar lista 	para las exploraciones que van a hacer sus hermanos, i.e las 	demas posibles decisiones del mismo	nivel	 
+	//Sacamos la ultima eleccion de la rondaAux y mantenemos el 	//invariante ,colocando el elemento al comienzo de la misma //para mantenerla ordenada y para que quede disponible para las 	//subsiguientes elecciones que se haran en el proximo 	ciclo(otra forma de verlo es pensar que tiene que estar lista 	para las exploraciones que van a hacer sus hermanos, i.e las 	demas posibles decisiones del mismo	nivel	 
 end for
 	
 
 retornar
 
+Es importante remarcar , ahora, algunos detalles sobre las clases de Ronda y Amistad.
+Sobre esta ultima, solamente basta aclarar que es una tupla que implementa un par no ordenado. Se hizo,entonces, un "override" del metodo equals para definir la igualdad como (a,b) = (b,a).
+
+En cuanto a la ronda, la misma es una clase que extiende a ArrayList<Character>. Solamente se le agregaron dos metodos relevantes:
+distancia(int a, int b) y sumaDistancias(HashSet<Amistad> amigas)
+
+La primera, simplemente calcula las distancias dados dos indices en la ronda. Para eso, tiene en cuenta que si la diferencia entre b y a es mayor que la mitad, la distancia debe ser: tamaño - b + a. Si no, es simplemente la resta b -a.
+
+En cuanto a sumaDistancias,basicamente calcula las distancias todos contra todos.
+
+Define un acumulador inicializado en cero
+Itera la lista(ronda)
+	Por cada elemento que recorre, itera el resto de la lista(i.e hay dos bucles anidados).
+	Calcula la distancia entre el par de elementos y luego crea una instancia de amistad
+	Se fija si dicha amistad esta contenida en el conjunto de amigas, que recibe por parametro.
+		Si es asi, acumula la distancia
+		Si no, no hace nada
+	Continua el curso de los bucles
 
 
 
+3)Analisis de correctitud
+
+Vamos a asumir que las funciones de las demas clases son correctas. Razonaremos , luego, por induccion en la cantidad de exploradoras (e) y dejaremos fijo la cantidad de amistades(a != 0).
+
+Si n = 1, entonces la funcion solve agregara el primer, y unico, elemento de la lista a la rondaAuxiliar. Luego, SentarExploradoras(vacia,rondaAux,0) caera en el primer if(caso "base" del backtrack) pues Tamaño(vacia) = tam(=0)+1
+Entonces, entrara al siguiente if, ya que la rondaOptima se encuentra vacía. De esta forma se instancia rondaOptima con rondaAux y se retornara a la funcion solve, la cual devolvera rondaOptima. Es facil ver que, entonces, la solucion es correcta.
+
+Supongamos que n> 1.  Es claro que no entrara en el primer if, pues rondaAux tiene un solo elemento. Luego, supongamos que estamos en la iesima iteracion del ciclo que explora las posibles elecciones. Siguiendo el algoritmo: se agrega el iesimo elemento de la lista de exploradoras a la rondaAux, que tiene n-1 elementos(pues inicialmente, el backtrack se llama  sin el primer elemento de la lista). El invariante del ciclo garantiza que la lista este en orden y que , dentro del mismo nivel del backtrack, el tamaño va a ser n-1. Luego, asumamos que no hay ninguna poda para hacer. Entonces, se remueve la iesima exploradora de la lista(ahora con n-2 elementos). Luego, por hipotesis inductiva, SentarExploradoras(exploradoras,rondaAux,tam) es correcta y por lo tanto explora todo el arbol de decision posible con la eleccion que acabamos de hacer y se tiene en rondaOptima la mejor ronda hasta el momento. Luego, hay que reestablecer el invariante. Para eso, quitamos de la rondaAux a la ultima eleccion, y la volvemos a agregar en la lista adelante de todo, para mantener el orden. Luego, la lista vuelve a tener n-1 elementos. Cuando lleguemos a la iteracion final(n-1) habremos inspeccionado correctamente todo el arbol de decision para cada eleccion de la lista de n-1 elementos. Luego, como miramos todas las posibles combinaciones, habremos encontrado la rondaOptima.
+
+¿Que hubiese pasado en caso de haberse efectuado una poda?
+Si en alguna iteracion hubiesemos caido en la primer poda, se habrian perdido posibles soluciones. Sin embargo, se puede ver que aquellas que se descartan ,en este caso, son rondas que se obtienen de mirar "al reves" las que ya se vieron. Por lo tanto no aportan un nuevo espacio de soluciones.
+Si en alguna iteracion hubiesemos caido en la segunda poda, significaria que aquella ronda no era mejor que la optima. Luego, como agregando nuevas elecciones no podria mejorar, es seguro podar.(?)
+
+4)Analisis de complejidad:
+
+Como hay mas de una clase, podemos comenzar por analisar la complejidad de las mas pequeñas.
+En el caso de la clase Ronda, la complejidad de los metodos es la misma que los de ArrayList, pues es una extension. 
+Para los definididos por nosotros, se puede observar que la complejidad de la funcion distancia(int a, int b) es O(1), pues solo realiza comparaciones de enteros, operaciones aritmeticas basicas y asignaciones.
+El metodo  int  sumaDistancias(HashSet<Amistad> amistad) recorre la lista subyacente por cada elemento en ella. Es decir:
+sum(i= 0 to n)O(i)O(a) =  sum(i= 0 to n)O(i*a) = O(sum(i= 0 to n)O(i)O(a)) = O(n^2*a) . Notar que en cada iteraciones del ciclo interior se llama a la funcion contains() del HashSet de Java. Como la misma esta implementada sobre una tabla de Hash, aunque , en promedio, la operacion sea O(1), el peor caso es O(a). La funcion contains() utiliza el metodo hashcode y equals de la clase amistad para poder determinar si el elemento en cuestion esta en el conjunto. Ambas,se puede ver, son O(1).
 
 
+Determinemos ahora, la complejidad de SentarExploradoras.
+Primero, notemos que se utilizan algunos metodos propios de la clase ArrayList(y Ronda). A saber, los mismos son: size(),add(),remove() y get(). Segun la documentacion de Java:
+"The size, isEmpty, get, set, iterator, and listIterator operations run in constant time. The add operation runs in amortized constant time, that is, adding n elements requires O(n) time. All of the other operations run in linear time (roughly speaking)." Para el analisis, se tendra en cuenta el peor caso de add()(O(n)).
 
-3)Justi?car por que el procedimiento desarrollado en el punto anterior resuelve efectivamente el problema
+Centrandonos en el algoritmo, veamos cuantas "pasos" toma realizarlo.  Dada una lista de exploradoras e y un conjunto de amistades a, el algoritmo trabaja con e-1 elementos. A partir de esto, podemos pensar el algoritmo de backtracking como un arbol de decision, donde luego de colocar el primer nodo raiz, elegimos entre e-1 posibilidades(hijos),por cada uno de ellos, restan (e-2) elecciones, y asi siguiendo. De esta forma, la cantidad de hojas del arbol es (e-1)!. Cada hoja representa la cantidad de posibles rondas que se armaron. Sin embargo, esta no es la cantidad de pasos que realiza el algoritmo. Todavia falta agregarle los nodos internos, que fueron pasos previos para obtener las soluciones. Luego, la cantida de nodos en un arbol completo  exactamente e-ario es N = sum(i=0 to h)e ^i = e^(h+1) -1 / e-1 . Si t es la cantidad de hojas en el arbol, e^h = t, por lo tanto N = e*t -1/ (e-1). Como nuestro arbol esta "acotado" por un arbol exactamente e-ario, diremos que
+N = cantidad de pasos = O(e*t -1/ e-1) = O(e*(e-1)! -1/e-1) = O(e! -1/e-1) = O(e!). Luego, falta ver cual es el "peso" de estos pasos. 
+En cada iteracion del ciclo se hacen:
+add() y remove() sobre la lista, que es O(2e) = O(e)
+add() y remove() sobre la ronda, que es O(2e) = O(e)
+Se pregunta si hay que hacer la PODA1 , O(1) pues size() lo es.
+Se pregunta si hay que hacer la PODA2, llamando a sumaDistancia de la RondaAux y sumaDistancia de la RondaOptima, ambas con el conjunto a. Luego, esto es, por lo visto, O(2*e^2*a) = O(e^2*a)
+
+Finalmente la cota de complejidad, teorica, resulta O(e!*e^2*a). Falta ver que esto cumple con lo pedido(mañana)
+

@@ -6,7 +6,6 @@ import java.util.HashSet;
 
 public class Ronda extends ArrayList<Character>{
 
-	private int sumaAcum;
 	//Constructor:
 
 	Ronda(ArrayList<Character> l ){
@@ -15,53 +14,14 @@ public class Ronda extends ArrayList<Character>{
 	}
 	Ronda(Ronda other){
 		super(other);
-		sumaAcum = other.getSuma();
+
 	}
 	Ronda(){
 	super();	
-	sumaAcum = 0;
-	}
+
+}
 	
 	
-public int getSuma(){
-	return sumaAcum;
-}
-public void setSuma(int sum){
-	sumaAcum = sum;
-}
-public int aumentarDist(HashSet<Amistad> amistad){
-	char e1;
-	ListIterator<Character> l1 = listIterator();
-	//Miro el resto de las exploradores:
-	while(l1.hasNext() ){ //O(a)
-		int distancia = distancia(l1.nextIndex(),size()-1);
-		e1 = l1.next();
-		Amistad r  = new Amistad(e1,get(size()-1));
-
-		//Si son amigas acumulo la distancia
-		if(amistad.contains(r))
-			sumaAcum = distancia + sumaAcum;
-	}
-
-	return sumaAcum;
-}	
-
-public int reducirDist(HashSet<Amistad> amistad){
-	char e1;
-	ListIterator<Character> l1 = listIterator();
-	//Miro el resto de las exploradores:
-	while(l1.hasNext() ){ //O(a)
-		int distancia = distancia(l1.nextIndex(),size()-1);
-		e1 = l1.next();
-		Amistad r  = new Amistad(e1,get(size()-1));
-		//Si son amigas acumulo la distancia
-		if(amistad.contains(r))
-			sumaAcum =  sumaAcum - distancia;
-	}
-
-	return sumaAcum;
-}	
-
 
 public int distanciaMaxima(HashSet<Amistad> amistad){
 	
