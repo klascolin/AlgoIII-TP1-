@@ -159,5 +159,10 @@ add() y remove() sobre la ronda, que es O(2e) = O(e)
 Se pregunta si hay que hacer la PODA1 , O(1) pues size() lo es.
 Se pregunta si hay que hacer la PODA2, llamando a sumaDistancia de la RondaAux y sumaDistancia de la RondaOptima, ambas con el conjunto a. Luego, esto es, por lo visto, O(2*e^2*a) = O(e^2*a)
 
-Finalmente la cota de complejidad, teorica, resulta O(e!*e^2*a). Falta ver que esto cumple con lo pedido(mañana)
+Finalmente la cota de complejidad, teorica, resulta O(e!*e^2*a). Veamos que esto es O(e^e*a^2)
+Probamos por induccion que e!*e^2*a < c*(e^e)*a para todo e >=1 , c = 4 y un a fijo
+Si e = 1, e!*e*a = a < 4*(e^e)=4*a 
+Si e > 1, (e+1)!(e+1)^2*a = e!(e+1)^2(e+1)*a = (e!(e^2) + 2e*(e!) + e!)*(e+1)*a < 3*e!(e^2)*(e+1)*(a)<(por hi)3*e^e*(e+1)*(a) = (*e^(e+1) + 3*e^e)*a < 4*(e+1)^(e+1)*a.
+
+
 

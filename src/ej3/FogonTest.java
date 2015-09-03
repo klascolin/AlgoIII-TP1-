@@ -10,15 +10,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.StringTokenizer;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestRule;
+
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.BenchmarkRule;
 
 import org.junit.Test;
-import org.junit.Test;
-import org.junit.experimental.theories.*;
-import org.junit.runner.RunWith;
 
 
-public class FogonTest {
+	  
+public class FogonTest extends AbstractBenchmark  {
+	 @Rule
+	  public TestRule benchmarkRun = new BenchmarkRule();
 	//TEST DE CORRECTITUD:
 	@Test	
 	public void testSolve1(){
@@ -76,7 +83,7 @@ public class FogonTest {
 		
 		assertEquals(s,optima.toString() + " " + optima.distanciaMaxima(amistad));
 		
-		System.out.println("Ok...");
+		System.out.println("Okaa...");
 		
 		
 }
@@ -225,64 +232,6 @@ public class FogonTest {
 
 }
 	
-	@Test
-	public void testSolveBorder3(){
-		//Caso vacio
-		System.out.println("TestBorder3...");
-		Character[] exploradoras = {};
-		HashSet<Amistad> amistad = new HashSet<Amistad>();
-		Fogon f = new Fogon();
-		ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
-		String  r1 = "[] 0";
-
-		Ronda optima = f.solve(exp,amistad); 
-		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima(amistad));
-		System.out.println(exp.toString());
-		System.out.println(amistad.toString());
-		System.out.println(optima.toString() + " " + optima.distanciaMaxima(amistad));
-		System.out.println("Ok...");
-
-		return;
-
-}
-
-	//TEST DE PERFORMANCE:
-	
-		@RunWith(Theories.class)
-		public class PerformanceTest {
-
-		PerformanceTest(){
-			
-		}
-		
-		@Theory
-
-		public void PeorCaso(int n){
-		
-			//n>3
-			//El peor caso seria cualquiera que obligue a tener que mirar la mayoria de las ramas del arbol
-			//Es decir, que las ramas se empiecen a podar deesde bien abajo.
-			//En otras palabras, que el orden indicado se encuentre casi al final del backtrack, de manera que 
-			//la poda no actue desde el "ppio".
-			HashSet<Amistad> amistad = new HashSet<Amistad>();
-			ArrayList<Character> exp = new ArrayList<Character>(n);
-			System.out.println("TestPeorCaso..");
-			for(int i=97;i<97+n;i++)
-				exp.add((char)i);
-
-			amistad.add(new Amistad('b',exp.get(exp.size()-1)));
-			
-			Fogon f = new Fogon();	
-			System.out.println( f.solve(exp,amistad).toString()); 
-	
-			
-			
-		}
-
-
-	    public  @DataPoint int[] candidates = {4, 5, 6};
-	}
-
 	public void testWarmUpMejorCaso(int n){
 		for(int i = 0;i<100;i++)
 			mejorCaso(n);
@@ -301,9 +250,11 @@ public class FogonTest {
 		
 	}
 
+	//Test Performance:
+	@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 2)
 	@Test
-	public void testn(){
-		this.PeorCaso(10);
+	public void testn2(){
+		this.PeorCaso(5);
 	}
 	public void testPromedioMejorCaso(int n){
 		for(int i = 0;i<100;i++)
@@ -316,7 +267,7 @@ public class FogonTest {
 			mejorCaso(n);
 		for(int i = 0;i<100;i++)
 			mejorCaso(n);
-		//Tomar el promedio, omitiendo la primer corrida
+		//Tomar el promedio
 		System.out.println("Ok...");
 		
 		
@@ -337,7 +288,7 @@ public class FogonTest {
 			PeorCaso(n);
 		for(int i = 0;i<100;i++)
 			PeorCaso(n);
-		//Tomar el promedio, omitiendo la primer corrida
+		
 		System.out.println("Ok...");
 		
 }	
@@ -353,7 +304,7 @@ public class FogonTest {
 			PeorCaso(n);
 		for(int i = 0;i<100;i++)
 			PeorCaso(n);
-		//Tomar el promedio, omitiendo la primer corrida
+
 		System.out.println("Ok...");
 		
 }	
@@ -382,6 +333,7 @@ public class FogonTest {
 		
 		
 	}
+	
 	
 	public void mejorCaso2(int n){
 
@@ -464,7 +416,7 @@ public class FogonTest {
     @Test
     public void testEscrito() throws IOException //lee del *.in y escribe en el *.out
     {
-        //Los archivos están en /bin/ej3/
+        //Los archivos estï¿½n en /bin/ej3/
         BufferedReader is = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "Tp1Ej3.in" ) ) );
         BufferedWriter os = new BufferedWriter( new FileWriter( getClass().getResource("").getPath() + "Tp1Ej3.out") );
         String line;
@@ -478,6 +430,6 @@ public class FogonTest {
         }
         os.close();
     }
-	
+
 		
 }
