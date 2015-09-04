@@ -74,7 +74,6 @@ import java.util.HashSet;
 				
 			//PODA1:Recortamos la rama que mira la ronda "al reves"
 			if(rondaAux.size() == 2 && i == exploradoras.size()-1 ){
-				System.out.println("PODAA");
 				break;	
 			}
 				

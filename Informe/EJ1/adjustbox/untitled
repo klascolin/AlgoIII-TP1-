@@ -1,0 +1,154 @@
+Blur!
+
+La primera implementacion de blur, opera cada pixel por separado, en cada iteracion cambia el valor de un solo pixel. La forma en 
+la que esta pensado, es por cada iteracion, traer los vecinos de el pixel que vamos a cambiar, pero como los pixeles que vas cambiando son
+los vecinos de otros pixeles que no cambiaste todavia, entonces cada vez que operamos sobra una nueva fila de la imagen, lo que hacemos es 
+copiarla a un temporal, para poder ir viendo el resultado de cada pixel, sobre los valores originales de la imagen.
+Esto se puede ver en:
+
+.termineDeCopiar:
+	mov  qword r8,0
+	inc r9
+	lea r14,[r14 + 4*r12]	
+	mov qword r10,rbx  
+	mov qword rbx,r15 
+	mov qword r15,r10 
+	jmp .pedirFila
+	
+Esta parte del codigo es llamada cada vez que se opera con el ante-ultimo pixel de cada fila, y la razon por la cual es el ante-ultimo y no 
+el ultimo, es porque este pixel no tiene los vecinos completos, entonces el promedio cambiaria bastante.. FIJARME QUE ESCRIBIR LA RAZON POR 
+LA CUAL NO CAMBIAMOS EL ULTIMO PIXEL.
+
+Y lo que hace, es cambiar lo que era la copia de la  "segunda fila" y pasarla a la "primera fila" y volver a pedir en la segunda fila, la 
+nueva fila, que es a la cual esta apuntando el puntero de fila, que en el codigo seria, r14, que es la fila con la que vamos a operar ahora.
+
+Una vez que ya tenemos las dos filas copiadas, y empezamos a operar sobre los pixeles, en cada iteracion, vamos a agarrar los 9 vecinos que 
+nos interesan. MOSTRAR GRAFICO DE LOS VECINOS, 
+En este momento tenemos a un registro que nos indica cual es el pixel sobre el que vamos a operar, entonces tenemos que pedir, de la fila de
+arriba un pixel menos, de la misma fila un pixel menos, y de la fila de abajo otro pixel menos, la manera en la que hicimos esto, fue crear
+un offset, que dependa del pixel en el que estamos iterando. Como tenemos 3 punteros, uno que apunta a la primera fila copiada, otro a la
+segunda fila copiada y otro a la fila que estamos modificando, entonces el offset sería:
+
+	movdqu  xmm1,[rbx+r11*4]		;xmm1 = |r4,g4,b4,a4 |r3,g3,b3,a3 |r2,g2,b2,a2 |r1,g1,b1,a1 |
+	movdqu  xmm5,[r15+r11*4]		;xmm5 = |r8,g8,b8,a8 |r7,g7,b7,a7 |r6,g6,b6,a6 |r5,g5,b1,a5 |
+	mov rdi,r12
+	add rdi,r11
+	movdqu xmm8,[r14+rdi*4]			;xmm8 = |r12,g12,b12,a12 |r11,g11,b11,a11 |r10,g10,b10,a10 |r9,g9,b9,a9 |
+
+en este pedazo del codigo, rbx sería la primera fila, r15, la segunda, y r14, es el que apunta en la imagen orignal la fila que estamos 
+modificando. Con primera y segunda fila, me refiero a la fila arriba de la cual estamos operando, y la segunda sería la misma fila con la que 
+estamos operando pero sin los píxeles anteriores modificados. Y r11, es el que dice cual es el pixel desde el que pedimos la memoria, ese pixel
+es el anterior inmediato del que vamos a modificar en esa iteracion. Rdi, como vemos en el codigo, es la suma de r11, mas otro registro, que 
+contiene la cantidad de pixeles que hay en una fila en la imagen, de esta manera podemos apuntar al pixel de la fila de abajo, para poder pedir
+los vecinos, sobre los que sabemos que estan modificar. En la explicacion de los xmm's anterior, los pixeles 4,8, y 12, no se usan porque no
+estan incluidos en los vecinos. Y los otros son promediados, guardandose en la posicion del pixel a cambiar, el promedio de todos sus vecinos.
+Modificandose en la imagen original. (El puntero sería: r14 + (r11+1)*4 )
+
+Y con respecto al segundo blur, la logica es bastante parecida, pero en cada iteracion se modifican 4 pixeles, de manera que la cantidad
+de vecinos que estos tienen (18) (MOSTRAR FOTO DE LOS VECINOS) no nos alcanzan para meterlos en diferentes registros. Y tampoco podemos 
+traerlos de memoria todos al mismo tiempo, entonces los traemos en 4 tandas diferentes (por la falta de registros) (usar una mejor palabra)
+primero trayendo a los vecinos que sirven para el primer y segundo pixel, y luego trayendo los otros que se van sumando en distintos 
+acumuladores para poder despues sacar el promedio de cada pixel.
+Como las imagenes que este programa acepta tienen que tener una cantidad de pixeles de ancho, que sean divisibles por 4, y ademas los bordes 
+como dijmos antes no se modifican, entonces al modificar de a 4 pixeles tenemos el problema de que siempre van a quedar dos al final de cada
+fila, entonces al final de cada iteracion, controlamos que no estemos en el final, para no pisar posiciones de memoria que no son nuestros.
+Ademas, para traer de memoria tambien debemos fijarnos, que no nos estemos pasando, por eso antes de traer a algun xmm, datos de las filas que
+fueron copiadas(las que vimos antes, que copiamos la primera y segunda fila que contienen a los vecinos sin modificar) tambien controlamos 
+que no estemos en la ultima iteracion.
+
+
+Preguntas a responder
+
+>Cual implementacion tiene mejor rendimiento?
+SUPONIENDO QUE ESTAMOS HABLANDO SOBRE LOS MISMOS FILTROS, TIPO BLUR1 VS BLUR Y MERGE1 VS MERGE2, Y NO SOPBRE TODOS EN GENERAL
+La segunda implementacion de blur tiene mayor rendimiento. Y la razon es bastante simple, cuando operamos con la primera implementacion
+traemos todos los vecinos de cada pixel, que son 3 accesos a memoria, solo para traer los pixeles, y otro acceso mas, para cambiarlo.
+Eso simplemente por cada pixel, sin contar lo que cuestra copiar una fila, porque eso lo hacemos en ambas implementaciones. Entonces
+para cambiar 1 pixel estamos accediendo a memoria 4 veces. Y en la segunda implementacion, para modificar 4 pixeles, estamos accediendo
+6 veces, para traer los vecinos de los 4 pixeles, y otras 4 para guardarlos, que serían 10 accesos a memoria para 4 pixeles, mientras que 
+en la implementacion uno son 4 para cada pixel, y en la segunda 2.5 por pixel, y solo estoy contando la cantidad de accesos a memoria porque
+son lo mas lento. El otro tema de tiempos tambien esta en las conversiones, de las cuales para la primera implementacion, tenemos que convertir
+1 xmm de entero a float, y otra conversion de floats a enteros, y en la segunda, son 8 conversiones, 4 de enteros a floats, y 4 de floats
+a enteros. (Esto se usa para poder dividir en el momento de sacar el promedio) que por pixel sería la misma cantidad de conversiones por pixel
+
+Entonces tomando lo mas lento de todo el codigo que sería memoria y conversiones, por lo anterior queda que la segunda implementacion tiene
+mejor rendimiento 
+MOSTRAR GRAFICO DE LA CANTIDAD DE CLOCKS QUE TARDA CADA UNO SOBRE UNA MISMA IMAGEN. 
+Este seria un grafico de barras comparando las 3 implementaciones. Es decir seria un grafico de barra por implementacion ,tomando promedio de todas las 7 imagenes en cada uno porque son casi iguales(aclarar). Los resultados ya estan.
+
+>En qua casos? >Depende del tama~no de la imagen? >Depende de la imagen en si?
+
+En el caso de los blurs, nunca depende de la imagen en si, sino solo de su tamaño, por como fuimos explicando de como funcionan las 
+iteraciones, y asumiendo que la suma vertical de los xmm's no dependen del valor de los enteros, entonces que es lo que contienen las imagenes
+no van a cambiar en el tema del rendimiento, en otras palabras, una imagen negra, roja, cualquier color, tardaria lo mismo que una foto de una
+montaña siempre y cuando su tamaño sea el mismo. Porque por la forma que estan hechos, la cantidad de iteraciones van a depender simplemente 
+de la cantidad que pixeles que hayan. En la primera implementacion la cantidad de iteraciones van a ser, (w-2)*(h-2).
+Siendo w, la cantidad de pixeles que contiene la imagen de ancho, y h la cantidad de pixeles que contiene la imagen de alto, y la razon de que
+sean menos 2, es porque los bordes no aplican.
+Y en la segunda implementacion la cantidad de iteraciones serían (((w-4)/4)+1)*(h-2) porque por iteracion modificamos 4 pixeles, pero como 
+las imagenes son multiplos de 4, y los bordes no aplican entonces, la ultima iteracion modifica solo 2(por eso el +1) y siguen siendo la misma
+cantidad de filas que hay que modificar.
+
+Correr para imagenes de distinto tamaño, por ejemplo para imagen 4.
+	
+>Como mejorara el rendimiento de las implementaciones propuestas?
+
+Aca se podria hablar de blur v2, aclarando que la suma entra en 16 bits y que esto ahorra desempaquetados y conversiones.
+Ver resultados, para imagenes 0,4,6
+Mostrar comparacion con grafico de barras
+
+
+
+NO ESTOY SEGURO DE COMO RESPONDER A ESTO	(quizas se refiere a lo que plantee el otro dia de solo modificar de a 2 pixeles)
+
+
+>Es una comparacion justa?, >La cantidad de operaciones en cada implementacion es la
+misma?, >y los accesos a memoria?
+
+Como ya se explico antes, la cantidad de accesos a memoria no son lo mismos, en la primera implementacion hay mas accesos a memoria por pixel
+que en la segunda. Y la cantidad de operaciones aparte de conversiones, son bastante similares, porque en ambas cada pixel necesita lo mismo
+y la mayor diferencia se hace en la cantidad de veces que traes cada dato, porque en las dos implementaciones, cada pixel necesitan los mismos
+datos, para poder sacar su promedio.
+
+
+>La limitacion de rendimiento esta en el acceso a memoria?, >o en la memoria cache?,
+>esta se podra acceder mejor?
+
+La limitacion del rendimiento esta en la cantidad de accesos a memoria, mas que nada en la implementacion 1, porque como va modificando de a
+un pixel, entonces aunque la primera este alineada, el segundo, tercer, y cuarto pixel no lo van a estar. Y en la segunda implementacion, se
+podria mejorar pidiendo que este el primer dato que se pide a memoria alineado a 16, asi la cache lo puede procesar mas rapido, y modificandola
+un poco para que esten todos los accesos a memoria alineados para que la cache pueda traer todo de una sola vez de memoria y no en dos lineas
+distintas
+
+
+>Hay problemas de rendimiento por los saltos condicionales? >Es posible evitarlos?
+
+
+TAMPOCO ESTOY SEGURO DE COMO RESPONDER ESTO
+Tantos problemas de rendimiento no hay, porque probablemente por como vimos en la clase teorica, cuando hay loops, se suele suponer que se lo 
+va a tomar, de manera que solo se pierden un par de ciclos al final cuando se toma el otro loop, para volver a cargar una fila y de ahi lo
+mismo. Hay algunos que se pueden llegar a evitar, pero es medio feo FIJARSE QUE PONER ACA
+
+
+>El patron de acceso a la memoria es desalineado? >Hay forma de mejorarlo? >Es posible
+medir cuanto se pierde?
+
+
+Suponiendo que al principio del primer pixel esta alineado, en la segunda implementacion se puede mejorar para que esten todos los accesos 
+alineados, pero en la primera, no hay forma de pedir que esten todos alineados porque se va operando de a pixel, al menos que guardes cada 
+pixel de forma alineada lo cual sería medio ridiculo para traer el programa a memoria porque ocuparia un monton.
+
+
+
+>Hay diferencias en operar con enteros o punto otante? >La imagen final tiene diferencias
+signicativas?
+
+CREO QUE ESTA PREGUNTA NO ES PARA BLUR
+Habrian muchos cambios, porque cuando opero con enteros, solo necesito usar punto flotante, para poder dividir al dato. Y si lo usaria
+siempre con punto flotante, entonces las conversiones, y cada operacion hecha con punto flotante iria, perdiendo precision, de manera que 
+la imagen final tendria bastantes diferencias. SI QUERES HACEMOS UNA PRUEBA PARA CHEQUEAR ESTO Y LES PONEMOS UN GRAFIQUITO CON LA DATA
+
+
+>El overhead de llamados a funciones es signicativo? >Se puede medir?
+El unico llamado a funciones es a malloc. PROBAR EN SU CODIGO
+

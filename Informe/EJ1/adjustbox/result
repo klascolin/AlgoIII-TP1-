@@ -1,0 +1,135 @@
+ASM2	0.6
+
+
+Promedio 5043211 | Max: 7004196 | Desvio: 424227 | PromedioRefinado: 4918002 | Max2: 5667673 | Desvio3: 177891
+ ---------------------
+ 
+ ---------------------
+Promedio 5065758 | Max: 7555538 | Desvio: 508028 | PromedioRefinado: 4919171 | Max2: 5819941 | Desvio3: 176397
+ ---------------------
+
+---------------------
+Promedio 5014823 | Max: 7128485 | Desvio: 460722 | PromedioRefinado: 4874999 | Max2: 5705390 | Desvio3: 132543
+ ---------------------
+
+---------------------
+Promedio 5091237 | Max: 7498464 | Desvio: 530588 | PromedioRefinado: 4914535 | Max2: 5886324 | Desvio3: 184323
+ ---------------------
+
+---------------------
+Promedio 5090425 | Max: 7662991 | Desvio: 543523 | PromedioRefinado: 4911228 | Max2: 5904953 | Desvio3: 197989
+ ---------------------
+
+
+SOLO MEMORIA
+---------------------
+Promedio 284297 | Max: 2809177 | Desvio: 178991 | PromedioRefinado: 262744 | Max2: 513603 | Desvio3: 32000
+ ---------------------
+
+SOLO MEMORIA ITERANDO DISTINTO
+
+Promedio 271622 | Max: 2518665 | Desvio: 204761 | PromedioRefinado: 243335 | Max2: 561867 | Desvio3: 49980
+ ---------------------
+
+
+
+ASM1 ITERANDO DE A 16 PERO con registros comunes
+---------------------
+Promedio 211259 | Max: 448948 | Desvio: 24815 | PromedioRefinado: 205110 | Max2: 248106 | Desvio3: 7993
+
+
+ASM1 COMUN--------------------
+Promedio 195662 | Max: 1819883 | Desvio: 110576 | PromedioRefinado: 181638 | Max2: 352722 | Desvio3: 24866
+
+
+
+
+
+
+ASM1	0.6
+
+---------------------
+Promedio 863283 | Max: 3362416 | Desvio: 306739 | PromedioRefinado: 806911 | Max2: 1321224 | Desvio3: 61086
+ ---------------------
+
+---------------------
+Promedio 851141 | Max: 3147626 | Desvio: 263042 | PromedioRefinado: 797764 | Max2: 1231642 | Desvio3: 54582
+ ---------------------
+
+---------------------
+Promedio 866193 | Max: 3319680 | Desvio: 295800 | PromedioRefinado: 805685 | Max2: 1299870 | Desvio3: 60034
+ ---------------------
+
+Promedio 854861 | Max: 3132525 | Desvio: 271093 | PromedioRefinado: 799224 | Max2: 1259842 | Desvio3: 53247
+ ---------------------
+
+---------------------
+Promedio 850141 | Max: 3365443 | Desvio: 284777 | PromedioRefinado: 800360 | Max2: 1256749 | Desvio3: 58546
+ ---------------------
+
+C 	0.6
+
+Promedio 7806506 | Max: 9997340 | Desvio: 424785 | PromedioRefinado: 7691591 | Max2: 8441024 | Desvio3: 191428
+ ---------------------
+
+---------------------
+Promedio 7770148 | Max: 9108132 | Desvio: 332217 | PromedioRefinado: 7686549 | Max2: 8264193 | Desvio3: 165743
+ ---------------------
+
+---------------------
+Promedio 7781158 | Max: 9126782 | Desvio: 331082 | PromedioRefinado: 7698112 | Max2: 8274387 | Desvio3: 171131
+ ---------------------
+
+Promedio 7829579 | Max: 9711457 | Desvio: 439859 | PromedioRefinado: 7710817 | Max2: 8484158 | Desvio3: 202455
+ ---------------------
+
+Promedio 7816371 | Max: 10180653 | Desvio: 424910 | PromedioRefinado: 7701459 | Max2: 8452672 | Desvio3: 190631
+ ---------------------
+
+
+
+
+--------------segun tamaño
+ASM 1
+
+16x16
+---------------------
+Promedio 1082 | Max: 18995 | Desvio: 599 | PromedioRefinado: 1061 | Max2: 1612 | Desvio3: 173
+ ---------------------
+
+
+32x32
+---------------------
+Promedio 3488 | Max: 20869 | Desvio: 998 | PromedioRefinado: 3433 | Max2: 4960 | Desvio3: 376
+ ---------------------
+
+64
+Promedio 12162 | Max: 52055 | Desvio: 2399 | PromedioRefinado: 11706 | Max2: 14338 | Desvio3: 137
+ ---------------------
+
+128
+
+Promedio 48564 | Max: 136784 | Desvio: 7792 | PromedioRefinado: 47177 | Max2: 60235 | Desvio3: 2641
+ ---------------------
+
+
+
+ASM2
+---------------------
+Promedio 5653 | Max: 38139 | Desvio: 1586 | PromedioRefinado: 5565 | Max2: 7835 | Desvio3: 495
+ ---------------------
+
+---------------------
+Promedio 20604 | Max: 71397 | Desvio: 3885 | PromedioRefinado: 19857 | Max2: 25534 | Desvio3: 917
+ ---------------------
+
+---------------------
+Promedio 85484 | Max: 240793 | Desvio: 20473 | PromedioRefinado: 80196 | Max2: 115485 | Desvio3: 7921
+ ---------------------
+
+---------------------
+Promedio 348758 | Max: 664749 | Desvio: 42303 | PromedioRefinado: 338469 | Max2: 409900 | Desvio3: 10416
+ ---------------------
+
+
+

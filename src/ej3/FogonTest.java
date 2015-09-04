@@ -26,7 +26,8 @@ import org.junit.Test;
 public class FogonTest extends AbstractBenchmark  {
 	 @Rule
 	  public TestRule benchmarkRun = new BenchmarkRule();
-	//TEST DE CORRECTITUD:
+	//TEST DE CORRECTITUD
+	 
 	@Test	
 	public void testSolve1(){
 		System.out.println("Test1(catedra)...");
@@ -251,56 +252,9 @@ public class FogonTest extends AbstractBenchmark  {
 	}
 
 	//Test Performance:
-	@Test public void warmup1(){
-		this.testWarmUPeorCaso(2);
-	}
-	@Test
-	public void testn2Peor(){
-		this.testPromedioPeorCaso(2);
-	}
-	@Test public void warmup2(){
-		this.testWarmUpMejorCaso(2);
-	}
-	@Test
-	public void testn2Mejor(){
-		this.testPromedioMejorCaso(2);
-	}
-	@Test public void warmup3(){
-		this.testWarmUpCasoSinIntencionalidad(2);
-	}
-	@Test
-	public void testn2SinI(){
-		this.testPromedioSinIntencionalidad(2);
-	}
-	
-	public void testPromedioMejorCaso(int n){
-		for(int i = 0;i<500;i++)
-			mejorCaso(n);
-		
-		System.out.println("Ok...");
-		
-		
-}
- 		
-	public void testPromedioPeorCaso(int n){
-		
-		//luego tomamos el promedio de ejecucion dividiendo por 500 
-		for(int i = 0;i<500;i++)
-			PeorCaso(n);
-		
-		System.out.println("Ok...");
-		
-}	
-	
-	public void testPromedioSinIntencionalidad(int n){
-		for(int i = 0;i<500;i++)
-			this.CasoSinIntencionalidad2(n);
-		
-		System.out.println("Ok...");
-		
-}	
 
-	public void mejorCaso(int n){
+
+	public static void mejorCaso(int n){
 		
 		//n >= 2
 		//Considerando la poda, una vez que hayamos encontrado la solucion(que seria en la primer pasada) y estemos
@@ -318,15 +272,14 @@ public class FogonTest extends AbstractBenchmark  {
 		Fogon f = new Fogon();	
 		int i ;
 		
-		System.out.println(f.solve(exp,amistad));
-		System.out.println("Ok...");
+		f.solve(exp,amistad);
+		//System.out.println("Ok...");
 		
 		
 		
 	}
-	
-	
-	public void mejorCaso2(int n){
+		
+	public static void mejorCaso2(int n){
 
 		//n>3
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
@@ -347,7 +300,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 
-	public void PeorCaso(int n){
+	public static void PeorCaso(int n){
 	
 		//n>3
 		//El peor caso seria cualquiera que obligue a tener que mirar la mayoria de las ramas del arbol
@@ -356,38 +309,37 @@ public class FogonTest extends AbstractBenchmark  {
 		//la poda no actue desde el "ppio".
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		ArrayList<Character> exp = new ArrayList<Character>(n);
-		System.out.println("TestPeorCaso..");
 		for(int i=97;i<97+n;i++)
 			exp.add((char)i);
 
 		amistad.add(new Amistad('b',exp.get(exp.size()-1)));
 		
 		Fogon f = new Fogon();	
-		System.out.println( f.solve(exp,amistad).toString()); 
+		 f.solve(exp,amistad); 
 		
 		
 		
 	}
 
-	public void CasoSinIntencionalidad(int n){
+	public static void CasoSinIntencionalidad(int n){
 		
 		//n>3
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		ArrayList<Character> exp = new ArrayList<Character>(n);
-		System.out.println("TestSinIntencionalidad..");
+	
 		for(int i=97;i<97+n;i++)
 			exp.add((char)i);
 
 		amistad.add(new Amistad('c','d'));
 		
 		Fogon f = new Fogon();	
-		System.out.println( f.solve(exp,amistad).toString()); 
+		 f.solve(exp,amistad);
 		
 	
 		
 	}
 
-	public void CasoSinIntencionalidad2(int n){
+	public  static void CasoSinIntencionalidad2(int n){
 		//n>7
 		
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
@@ -403,6 +355,25 @@ public class FogonTest extends AbstractBenchmark  {
 		
 		
 	}
+	@Test
+	public  void testSobreConjunto(){
+		
+		int a = 100000000;
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		ArrayList<Character> exp = new ArrayList<Character>(a);
+
+		//Llenamos el arreglo desde a hasta a + 5
+		for(int i=97;i<97+6;i++)
+			exp.add((char)i);
+		//llenamos el conjunto con cualquier relacion con exploradoras que no esten
+		for(int i = 0;i<a;i++)
+			amistad.add(new Amistad((char)(i+97+6),(char)(i+97+7)));
+		
+		Fogon f = new Fogon();	
+		System.out.println(f.solve(exp,amistad));
+		
+		System.out.println(amistad.toString());
+	}
 	
     @Test
     public void testEscrito() throws IOException //lee del *.in y escribe en el *.out
@@ -415,7 +386,8 @@ public class FogonTest extends AbstractBenchmark  {
            Separar sep = new Separar(line);
            Fogon f = new Fogon();
            Ronda optima = f.solve(sep.exploradora, sep.amigas);
-           os.append(optima.toString() + " " + optima.distanciaMaxima(sep.amigas));
+           //esto debe imprimirse como el de ellos
+           os.append(optima.distanciaMaxima(sep.amigas)+ " "+ optima.toString());
            os.append(System.lineSeparator());
            System.out.println(optima.distanciaMaxima(sep.amigas)+" " + optima.toString());
         }

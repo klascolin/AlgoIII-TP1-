@@ -1,0 +1,221 @@
+Cpu freq:1600mhz
+Uso del cpu : 1,3 %
+3 terminales: top ,watch, programa 
+
+Resultados BLUR:
+C
+IMG0:
+Promedio 14846 | Max: 19428 | Desvio: 181 | PromedioRefinado: 14821 | Max2: 15026
+---------------------
+Promedio 48891281 | Max: 64035270 | Desvio: 599567 | PromedioRefinado: 48810355 | Max2: 49488945
+Cpu freq : 3300 mhz
+Uso del cpu : 100%
+
+IMG1
+
+Promedio 14841 | Max: 20570 | Desvio: 209 | PromedioRefinado: 14818 | Max2: 15050
+---------------------
+Promedio 48875090 | Max: 67841977 | Desvio: 693428 | PromedioRefinado: 48796913 | Max2: 49561296
+
+IMG2
+Promedio 14846 | Max: 15398 | Desvio: 118 | PromedioRefinado: 14812 | Max2: 14964
+---------------------
+Promedio 48894054 | Max: 50740683 | Desvio: 391465 | PromedioRefinado: 48781479 | Max2: 49285329
+
+Img3
+Promedio 14848 | Max: 17811 | Desvio: 147 | PromedioRefinado: 14818 | Max2: 14995
+---------------------
+Promedio 48898561 | Max: 58697673 | Desvio: 486896 | PromedioRefinado: 48799518 | Max2: 49383537
+-------------------
+
+Img4
+---------------------
+Promedio 14851 | Max: 18225 | Desvio: 158 | PromedioRefinado: 14821 | Max2: 15009
+---------------------
+Promedio 48907211 | Max: 60078703 | Desvio: 523255 | PromedioRefinado: 48807944 | Max2: 49430421
+---------------------
+
+img 5
+---------------------
+Promedio 14836 | Max: 16566 | Desvio: 129 | PromedioRefinado: 14804 | Max2: 14964
+---------------------
+Promedio 48861074 | Max: 54623442 | Desvio: 429846 | PromedioRefinado: 48753435 | Max2: 49288437
+---------------------
+
+Img6
+---------------------
+Promedio 14836 | Max: 17001 | Desvio: 132 | PromedioRefinado: 14803 | Max2: 14966
+---------------------
+Promedio 48858239 | Max: 56055120 | Desvio: 437517 | PromedioRefinado: 48748213 | Max2: 49294515
+---------------------
+
+Img7
+
+---------------------
+Promedio 14845 | Max: 15474 | Desvio: 119 | PromedioRefinado: 14810 | Max2: 14962
+---------------------
+Promedio 48889949 | Max: 50964033 | Desvio: 395426 | PromedioRefinado: 48777160 | Max2: 49284303
+---------------------
+
+
+ASM1
+img0 
+---------------------
+Promedio 1434 | Max: 3253 | Desvio: 102 | PromedioRefinado: 1420 | Max2: 1529
+---------------------s
+Promedio 4723561 | Max: 10747036 | Desvio: 339150 | PromedioRefinado: 4679617 | Max2: 5062422
+---------------------
+
+img1
+
+Promedio 1432 | Max: 3252 | Desvio: 92 | PromedioRefinado: 1422 | Max2: 1522
+---------------------
+Promedio 4719098 | Max: 10705044 | Desvio: 305194 | PromedioRefinado: 4684734 | Max2: 5021097
+---------------------
+
+img2
+
+---------------------
+Promedio 1435 | Max: 3281 | Desvio: 101 | PromedioRefinado: 1423 | Max2: 1534
+---------------------
+Promedio 4725914 | Max: 10835971 | Desvio: 336598 | PromedioRefinado: 4688412 | Max2: 5050005
+---------------------
+
+
+img3
+
+---------------------
+Promedio 1433 | Max: 3283 | Desvio: 112 | PromedioRefinado: 1422 | Max2: 1535
+---------------------
+Promedio 4720819 | Max: 10837860 | Desvio: 370258 | PromedioRefinado: 4684287 | Max2: 5052804
+---------------------
+
+
+img4
+
+---------------------
+Promedio 1434 | Max: 3270 | Desvio: 79 | PromedioRefinado: 1423 | Max2: 1511
+---------------------
+Promedio 4724719 | Max: 10800612 | Desvio: 265349 | PromedioRefinado: 4689608 | Max2: 4986870
+---------------------
+
+
+img5
+
+---------------------
+Promedio 1429 | Max: 2013 | Desvio: 53 | PromedioRefinado: 1414 | Max2: 1482
+---------------------
+Promedio 4708362 | Max: 6658481 | Desvio: 178537 | PromedioRefinado: 4658838 | Max2: 4886508
+---------------------
+
+img6
+---------------------
+Promedio 1433 | Max: 3274 | Desvio: 98 | PromedioRefinado: 1422 | Max2: 1528
+---------------------
+Promedio 4720314 | Max: 10821616 | Desvio: 327350 | PromedioRefinado: 4685481 | Max2: 5037474
+---------------------
+
+img7
+
+---------------------
+Promedio 1437 | Max: 3275 | Desvio: 114 | PromedioRefinado: 1424 | Max2: 1549
+---------------------
+Promedio 4733678 | Max: 10818629 | Desvio: 377469 | PromedioRefinado: 4691306 | Max2: 5105412
+---------------------
+
+
+
+ASM2
+
+img0
+
+---------------------
+Promedio 1133 | Max: 2593 | Desvio: 70 | PromedioRefinado: 1127 | Max2: 1203
+---------------------
+Promedio 3734389 | Max: 8606977 | Desvio: 234997 | PromedioRefinado: 3714736 | Max2: 3963435
+---------------------
+
+img1
+---------------------
+Promedio 1135 | Max: 2590 | Desvio: 102 | PromedioRefinado: 1126 | Max2: 1237
+---------------------
+Promedio 3738584 | Max: 8600237 | Desvio: 338061 | PromedioRefinado: 3709578 | Max2: 4075299
+---------------------
+
+img2
+
+---------------------
+Promedio 1133 | Max: 2590 | Desvio: 94 | PromedioRefinado: 1125 | Max2: 1227
+---------------------
+Promedio 3733768 | Max: 8580891 | Desvio: 313292 | PromedioRefinado: 3705507 | Max2: 4042959
+---------------------
+
+
+img3
+
+---------------------
+Promedio 1133 | Max: 1378 | Desvio: 42 | PromedioRefinado: 1120 | Max2: 1175
+---------------------
+Promedio 3733511 | Max: 4537698 | Desvio: 139266 | PromedioRefinado: 3690555 | Max2: 3870069
+
+
+img4
+
+---------------------
+Promedio 1138 | Max: 2604 | Desvio: 93 | PromedioRefinado: 1128 | Max2: 1231
+---------------------
+Promedio 3750940 | Max: 8576857 | Desvio: 307952 | PromedioRefinado: 3716807 | Max2: 4054218
+---------------------
+
+
+img5
+
+---------------------
+Promedio 1139 | Max: 2604 | Desvio: 98 | PromedioRefinado: 1128 | Max2: 1230
+---------------------
+Promedio 3751425 | Max: 8609997 | Desvio: 326568 | PromedioRefinado: 3716707 | Max2: 4074216
+---------------------
+img6
+
+---------------------
+Promedio 1129 | Max: 1306 | Desvio: 35 | PromedioRefinado: 1118 | Max2: 1162
+---------------------
+Promedio 3721279 | Max: 4324713 | Desvio: 116369 | PromedioRefinado: 3681653 | Max2: 3825516
+---------------------
+
+
+img7
+
+Promedio 1139 | Max: 2608 | Desvio: 125 | PromedioRefinado: 1127 | Max2: 1257
+---------------------
+Promedio 3753341 | Max: 8594438 | Desvio: 413098 | PromedioRefinado: 3712206 | Max2: 4149942
+---------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

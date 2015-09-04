@@ -1,0 +1,283 @@
+im0 im1  (lisa, lisa)
+0.6
+---------------------
+Promedio 7512 | Max: 8872 | Desvio: 250 | PromedioRefinado: 7504 | Max2: 7886
+---------------------
+Promedio 12737700 | Max: 15041936 | Desvio: 425129 | PromedioRefinado: 12723178 | Max2: 13369791
+---------------------
+
+
+0.1
+
+---------------------
+Promedio 7122 | Max: 8504 | Desvio: 367 | PromedioRefinado: 7042 | Max2: 7672
+---------------------
+Promedio 12075960 | Max: 14417694 | Desvio: 623698 | PromedioRefinado: 11938076 | Max2: 13001752
+---------------------
+
+im0,im4 (lisa, degrade)
+---------------------
+Promedio 7437 | Max: 10061 | Desvio: 350 | PromedioRefinado: 7404 | Max2: 7960
+---------------------
+Promedio 12612159 | Max: 17077769 | Desvio: 596270 | PromedioRefinado: 12555226 | Max2: 13495297
+---------------------
+0.1
+---------------------
+Promedio 7156 | Max: 9644 | Desvio: 394 | PromedioRefinado: 7072 | Max2: 7747
+---------------------
+Promedio 12134293 | Max: 16349108 | Desvio: 670852 | PromedioRefinado: 11991355 | Max2: 13133809
+---------------------
+
+
+
+im0,im6 (lisa,densa)
+---------------------
+Promedio 7438 | Max: 9406 | Desvio: 311 | PromedioRefinado: 7436 | Max2: 7901
+---------------------
+Promedio 12611759 | Max: 15946771 | Desvio: 528408 | PromedioRefinado: 12607532 | Max2: 13394162
+---------------------
+
+
+0.1
+
+---------------------
+Promedio 7629 | Max: 10016 | Desvio: 400 | PromedioRefinado: 7570 | Max2: 8229
+---------------------
+Promedio 12938864 | Max: 17006756 | Desvio: 681277 | PromedioRefinado: 12838198 | Max2: 13951839
+---------------------
+
+
+im4,im6(degrade,densa)
+
+---------------------
+Promedio 7480 | Max: 8650 | Desvio: 244 | PromedioRefinado: 7475 | Max2: 7842
+---------------------
+Promedio 12683408 | Max: 14664799 | Desvio: 415016 | PromedioRefinado: 12674987 | Max2: 13257652
+---------------------
+
+---------------------
+Promedio 7292 | Max: 9581 | Desvio: 473 | PromedioRefinado: 7198 | Max2: 8000
+---------------------
+Promedio 12386377 | Max: 16344852 | Desvio: 819915 | PromedioRefinado: 12214847 | Max2: 13615772
+---------------------
+
+
+
+im6,im5 (densa,densa)
+
+---------------------
+Promedio 7523 | Max: 8969 | Desvio: 296 | PromedioRefinado: 7482 | Max2: 7967
+---------------------
+Promedio 12756150 | Max: 15207552 | Desvio: 503887 | PromedioRefinado: 12686500 | Max2: 13506902
+---------------------
+
+---------------------
+Promedio 7292 | Max: 9581 | Desvio: 473 | PromedioRefinado: 7198 | Max2: 8000
+---------------------
+Promedio 12386377 | Max: 16344852 | Desvio: 819915 | PromedioRefinado: 12214847 | Max2: 13615772
+---------------------
+
+Promedio con 0.6: 12649484,6
+Desvio:60159,677138761
+
+0,475589947%
+
+ASM1 0.6
+
+
+
+---------------------
+Promedio 530 | Max: 1895 | Desvio: 177 | PromedioRefinado: 487 | Max2: 793
+---------------------
+Promedio 900199 | Max: 3212347 | Desvio: 301271 | PromedioRefinado: 826422 | Max2: 1351738
+---------------------
+
+---------------------
+Promedio 535 | Max: 1828 | Desvio: 146 | PromedioRefinado: 509 | Max2: 749
+---------------------
+Promedio 907467 | Max: 3104397 | Desvio: 248762 | PromedioRefinado: 863390 | Max2: 1272960
+---------------------
+
+---------------------
+Promedio 512 | Max: 1805 | Desvio: 144 | PromedioRefinado: 486 | Max2: 719
+---------------------
+Promedio 872030 | Max: 3061581 | Desvio: 251201 | PromedioRefinado: 827194 | Max2: 1246287
+---------------------
+
+---------------------
+Promedio 516 | Max: 1918 | Desvio: 151 | PromedioRefinado: 489 | Max2: 722
+---------------------
+Promedio 876747 | Max: 3251941 | Desvio: 256976 | PromedioRefinado: 831120 | Max2: 1233826
+---------------------
+
+
+---------------------
+Promedio 531 | Max: 1914 | Desvio: 183 | PromedioRefinado: 492 | Max2: 805
+---------------------
+Promedio 905059 | Max: 3387252 | Desvio: 321626 | PromedioRefinado: 837681 | Max2: 1384494
+---------------------
+
+Promedio:837161,4
+Desvio:13706,872226734
+1,637303419 %
+
+ASM2
+
+---------------------
+Promedio 3085 | Max: 4507 | Desvio: 302 | PromedioRefinado: 3024 | Max2: 3537
+---------------------
+Promedio 5231600 | Max: 7643240 | Desvio: 514395 | PromedioRefinado: 5127974 | Max2: 5997650
+---------------------
+
+
+---------------------
+Promedio 3186 | Max: 4545 | Desvio: 223 | PromedioRefinado: 3171 | Max2: 3519
+---------------------
+Promedio 5403484 | Max: 7720672 | Desvio: 379606 | PromedioRefinado: 5377277 | Max2: 5964932
+---------------------
+
+---------------------
+Promedio 3193 | Max: 5068 | Desvio: 379 | PromedioRefinado: 3112 | Max2: 3760
+---------------------
+Promedio 5415439 | Max: 8592913 | Desvio: 643708 | PromedioRefinado: 5277998 | Max2: 6375393
+---------------------
+
+---------------------
+Promedio 3092 | Max: 4426 | Desvio: 314 | PromedioRefinado: 3025 | Max2: 3562
+---------------------
+Promedio 5243582 | Max: 7513823 | Desvio: 534294 | PromedioRefinado: 5132274 | Max2: 6042747
+---------------------
+
+---------------------
+Promedio 3072 | Max: 3814 | Desvio: 240 | PromedioRefinado: 3025 | Max2: 3432
+---------------------
+Promedio 5210485 | Max: 6466213 | Desvio: 408477 | PromedioRefinado: 5129185 | Max2: 5822628
+---------------------
+
+
+
+Prom:
+ 5208940,4
+ 
+Desvio: 
+	101882,659628025
+
+1,955919089%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------Mediciones en tamaño C--------
+Im4 degrade 0.1
+
+
+16x16
+---------------------
+Promedio 7 | Max: 32 | Desvio: 1 | PromedioRefinado: 6 | Max2: 8
+---------------------
+Promedio 12018 | Max: 68193 | Desvio: 3249 | PromedioRefinado: 11574 | Max2: 16788
+---------------------
+
+24x24
+
+---------------------
+Promedio 18 | Max: 76 | Desvio: 5 | PromedioRefinado: 16 | Max2: 25
+---------------------
+Promedio 30712 | Max: 129244 | Desvio: 10309 | PromedioRefinado: 27959 | Max2: 45974
+---------------------
+
+32 x32
+---------------------
+Promedio 29 | Max: 77 | Desvio: 4 | PromedioRefinado: 28 | Max2: 35
+---------------------
+Promedio 49609 | Max: 139027 | Desvio: 7737 | PromedioRefinado: 47942 | Max2: 61033
+---------------------
+
+200x200
+
+---------------------
+Promedio 1111 | Max: 1569 | Desvio: 79 | PromedioRefinado: 1098 | Max2: 1229
+---------------------
+Promedio 1883979 | Max: 2661690 | Desvio: 135294 | PromedioRefinado: 1862629 | Max2: 2085929
+
+---------------------
+ 512x 512
+ 
+ ---------------------
+Promedio 7465 | Max: 8628 | Desvio: 260 | PromedioRefinado: 7459 | Max2: 7855
+---------------------
+Promedio 12658587 | Max: 14628481 | Desvio: 442633 | PromedioRefinado: 12648282 | Max2: 13320941
+---------------------
+
+
+600x600
+---------------------
+Promedio 9788 | Max: 11956 | Desvio: 445 | PromedioRefinado: 9687 | Max2: 10452
+---------------------
+Promedio 16648512 | Max: 20336622 | Desvio: 778157 | PromedioRefinado: 16473813 | Max2: 17815724
+---------------------
+
+-----------------------------Variacion con parametros-------
+
+im4 im0
+asm2 distintos parametros.
+
+---------------------
+Promedio 2975 | Max: 4174 | Desvio: 263 | PromedioRefinado: 2899 | Max2: 3364
+---------------------
+Promedio 5044376 | Max: 7076928 | Desvio: 447455 | PromedioRefinado: 4915411 | Max2: 5704221
+---------------------
+
+
+---------------------
+Promedio 2953 | Max: 3912 | Desvio: 203 | PromedioRefinado: 2891 | Max2: 3257
+---------------------
+Promedio 5008792 | Max: 6636033 | Desvio: 346052 | PromedioRefinado: 4903081 | Max2: 5525283
+---------------------
+
+---------------------
+Promedio 2985 | Max: 4247 | Desvio: 291 | PromedioRefinado: 2905 | Max2: 3415
+---------------------
+Promedio 5061617 | Max: 7200919 | Desvio: 495619 | PromedioRefinado: 4926395 | Max2: 5793464
+---------------------
+
+
+asm1 distintos parametros
+---------------------
+Promedio 495 | Max: 1847 | Desvio: 159 | PromedioRefinado: 468 | Max2: 699
+---------------------
+Promedio 840733 | Max: 3131319 | Desvio: 270788 | PromedioRefinado: 795326 | Max2: 1185050
+---------------------
+
+---------------------
+Promedio 486 | Max: 1766 | Desvio: 153 | PromedioRefinado: 460 | Max2: 700
+---------------------
+Promedio 825360 | Max: 2993691 | Desvio: 260351 | PromedioRefinado: 780453 | Max2: 1186964
+---------------------
+
+---------------------
+Promedio 496 | Max: 1890 | Desvio: 152 | PromedioRefinado: 471 | Max2: 705
+---------------------
+Promedio 842210 | Max: 3205027 | Desvio: 258983 | PromedioRefinado: 799085 | Max2: 1195588
+---------------------
+
+791621,3333333
+8044,926862453
+
+%1,01
+
