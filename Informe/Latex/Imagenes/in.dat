@@ -1,0 +1,35 @@
+
+#x y dev
+1 2.0000000949949027E-5	1.400000066496431E-4
+2 2.0000000949949027E-5	1.4000000664964312E-4
+3 9.000000427477062E-5	2.861817740179882E-4
+4 8.000000379979611E-5	2.7129321221074657E-4
+5 9.090909522704102E-5	2.874798009425916E-4
+6 3.030303174234701E-4	4.5956823055871555E-4
+7 0.0011458333877574962	3.52939065640735E-4
+8 0.005151515064591711	3.5855034865579755E-4
+9 0.04363750037737191	0.003095334107341118
+10 0.45217499770224096	0.04188817503625849
+11 5.3394225013088175	0.49324819927908214
+
+ 	
+
+
+
+set title "Girl Scouts(a = 1)"
+set xlabel "Cantidad de Exploradoras(e)"
+set ylabel "Tiempo(milisegundos)"
+set bmargin 7
+set offset .05, .05
+set xrange [1:11]
+set autoscale
+set term png
+set output "a.png"
+set style func linespoints
+fac(x) = (int(x)==0) ? 1.0 : int(x) * fac(int(x)-1.0)
+
+ plot "in.dat" with lines dashtype 2 lw 2 title 'MejorCaso', "in2.data" with lines dashtype 2 lw 2 title 'PeorCaso', "in3.data" with lines dashtype 2 lw 2 title 'SinIntencion', fac(x)*(x**2)*(0.000000005) with lines lw  2 title '5e-9*x!x^2'
+
+
+
+     

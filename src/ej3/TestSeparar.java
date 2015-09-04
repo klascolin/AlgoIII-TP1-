@@ -2,6 +2,7 @@ package ej3;
 
 import java.util.Iterator;
 
+//abandonado quedó
 public class TestSeparar {
 	public static void main(String[] args) {
 		test1();

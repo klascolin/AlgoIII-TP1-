@@ -47,15 +47,15 @@ public class Benchmark {
 		 double desvio=0,desvio2=0,prom=0,promedio2=0,varianza=0,varianza2=0, total = 0,total2=0;
 		 
 		 //Warm-up
-		 for(int i = 0;i<100;i++){
+		 for(int i = 0;i<50;i++){
 			if(caso == 0)
 				FogonTest.mejorCaso(k);
 			if(caso == 1)
 				 FogonTest.PeorCaso(k);
 			if(caso == 2)
 				FogonTest.CasoSinIntencionalidad(k);
-			if(caso == 3)
-				FogonTest.testSobreConjunto(k);
+		//	if(caso == 3)
+			//	FogonTest.testSobreConjunto(k);
 			
 		 }
 			
@@ -71,6 +71,8 @@ public class Benchmark {
 				 FogonTest.PeorCaso(k);
 			if(caso == 2)
 				FogonTest.CasoSinIntencionalidad(k);
+			if(caso == 3)
+				FogonTest.testSobreConjunto(k);
 			
 			delta = (System.currentTimeMillis()-start_t)/1000F;
 			
@@ -128,11 +130,11 @@ public class Benchmark {
 		System.out.println("Mejor");
 		//run_Caso(11,0);
 		System.out.println("Peor");
-	//	run_Caso(11,1);
+		run_Caso(11,1);
 		System.out.println("SinIntencionalidad");
-	//	run_Caso(11,2);
+		//run_Caso(9,2);
 		System.out.println("TestSobreConjuntoExploradorasFijas");
-		run_Caso(10000,3);
+		//run_Caso(10000,3);
 	}
 
 }

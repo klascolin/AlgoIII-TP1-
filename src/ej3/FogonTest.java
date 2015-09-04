@@ -232,24 +232,31 @@ public class FogonTest extends AbstractBenchmark  {
 		return;
 
 }
+
+	@Test
 	
-	public void testWarmUpMejorCaso(int n){
-		for(int i = 0;i<20;i++)
-			mejorCaso(n);
-		
-	}
+	
 
-	public void testWarmUPeorCaso(int n){
-		for(int i = 0;i<20;i++)
-			PeorCaso(n);
-		
-	}
+	public void testSolveBorder3(){
+		//Caso no hay 
+		System.out.println("TestBorder2...");
+		Character[] exploradoras = {' '};
+		HashSet<Amistad> amistad = new HashSet<Amistad>();
+		Fogon f = new Fogon();
+		ArrayList<Character> exp = new ArrayList<Character>(Arrays.asList(exploradoras));
+		String  r1 = "[ ] 0";
 
-	public void testWarmUpCasoSinIntencionalidad(int n){
-		for(int i = 0;i<20;i++)
-			CasoSinIntencionalidad(n);
-		
-	}
+		Ronda optima = f.solve(exp,amistad); 
+		assertEquals(r1,optima.toString() + " " + optima.distanciaMaxima(amistad));
+		System.out.println(exp.toString());
+		System.out.println(amistad.toString());
+		System.out.println(optima.toString() + " " + optima.distanciaMaxima(amistad));
+		System.out.println("Ok...");
+
+		return;
+
+}
+
 
 	//Test Performance:
 
@@ -355,10 +362,10 @@ public class FogonTest extends AbstractBenchmark  {
 		
 		
 	}
-	@Test
-	public  void testSobreConjunto(){
+
+	public static  void testSobreConjunto(int a){
 		
-		int a = 100000000;
+		
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
 		ArrayList<Character> exp = new ArrayList<Character>(a);
 
@@ -370,9 +377,8 @@ public class FogonTest extends AbstractBenchmark  {
 			amistad.add(new Amistad((char)(i+97+6),(char)(i+97+7)));
 		
 		Fogon f = new Fogon();	
-		System.out.println(f.solve(exp,amistad));
+		f.solve(exp,amistad);
 		
-		System.out.println(amistad.toString());
 	}
 	
     @Test
