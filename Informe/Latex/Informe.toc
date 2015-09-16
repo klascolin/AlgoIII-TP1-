@@ -1,0 +1,24 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Problema 1: Tel\'egrafo}{2}
+\contentsline {subsection}{\numberline {1.1}Descripci\'on del problema}{2}
+\contentsline {subsection}{\numberline {1.2}Resoluci\'on}{2}
+\contentsline {subsection}{\numberline {1.3}Justificaci\'on}{3}
+\contentsline {subsection}{\numberline {1.4}Complejidad}{3}
+\contentsline {subsection}{\numberline {1.5}Casos de Test}{4}
+\contentsline {subsection}{\numberline {1.6}Tiempos de ejecuci\'on y gr\'aficos}{4}
+\contentsline {section}{\numberline {2}Problema 2: A Medias}{10}
+\contentsline {subsection}{\numberline {2.1}Descripci\'on del problema:}{10}
+\contentsline {subsection}{\numberline {2.2}Resoluci\'on del problema:}{10}
+\contentsline {subsection}{\numberline {2.3}Justificaci\IeC {\'o}n del algoritmo:}{11}
+\contentsline {subsection}{\numberline {2.4}Complejidad del algoritmo:}{11}
+\contentsline {subsection}{\numberline {2.5}Tiempos de ejecuci\'on y gr\'afico}{11}
+\contentsline {section}{\numberline {3}Problema 3: Girl Scouts}{13}
+\contentsline {subsection}{\numberline {3.1}Descripci\IeC {\'o}n del problema:}{13}
+\contentsline {subsection}{\numberline {3.2}Resoluci\IeC {\'o}n:}{13}
+\contentsline {subsection}{\numberline {3.3}Justificaci\IeC {\'o}n:}{16}
+\contentsline {subsection}{\numberline {3.4}Complejidad:}{17}
+\contentsline {subsection}{\numberline {3.5}Tiempo de ejecuci\IeC {\'o}n y gr\IeC {\'a}ficos:}{19}
+\contentsline {section}{\numberline {4}Ap\IeC {\'e}ndice:Partes relevantes del c\IeC {\'o}digo}{20}
+\contentsline {subsection}{\numberline {4.1}Problema 1:}{20}
+\contentsline {subsection}{\numberline {4.2}Probelma2:}{21}
+\contentsline {subsection}{\numberline {4.3}Problema3:}{22}
