@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.3)  16 SEP 2015 15:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.3)  17 SEP 2015 01:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -368,9 +368,9 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \listing@line=\count95
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-2015916909.tex)...disabled (restricted).
+runsystem(touch w18-test-201591777.tex)...disabled (restricted).
 
-runsystem(rm -f w18-test-2015916909.tex)...disabled (restricted).
+runsystem(rm -f w18-test-201591777.tex)...disabled (restricted).
 
 
 
@@ -822,57 +822,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 329--330
  []
 
 [14] [15] [16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 467--469
+Underfull \hbox (badness 10000) in paragraph at lines 466--468
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 474--475
+Underfull \hbox (badness 10000) in paragraph at lines 473--474
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--478
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 482--483
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 484--485
+Underfull \hbox (badness 10000) in paragraph at lines 483--484
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 507--508
+Underfull \hbox (badness 10000) in paragraph at lines 506--507
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 509--510
+Underfull \hbox (badness 10000) in paragraph at lines 508--509
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--511
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 511--512
+Underfull \hbox (badness 10000) in paragraph at lines 512--513
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 513--514
+Underfull \hbox (badness 10000) in paragraph at lines 514--515
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 515--516
+Underfull \hbox (badness 10000) in paragraph at lines 516--517
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--518
+Underfull \hbox (badness 10000) in paragraph at lines 523--526
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 527--529
 
  []
 
@@ -881,55 +891,51 @@ File: Imagenes/exploradorasGeneral.png Graphic file (type png)
 
 <use Imagenes/exploradorasGeneral.png>
 Package pdftex.def Info: Imagenes/exploradorasGeneral.png used on input line 53
-4.
+5.
 (pdftex.def)             Requested size: 441.01772pt x 164.3047pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 524--536
-
- []
-
-<Imagenes/exploradorasCotaPropia.png, id=89, 820.56563pt x 299.61937pt>
+ [19 <./Imagenes/exploradorasGeneral.png>] <Imagenes/exploradorasCotaPropia.png
+, id=93, 820.56563pt x 299.61937pt>
 File: Imagenes/exploradorasCotaPropia.png Graphic file (type png)
 
 <use Imagenes/exploradorasCotaPropia.png>
 Package pdftex.def Info: Imagenes/exploradorasCotaPropia.png used on input line
- 540.
+ 546.
 (pdftex.def)             Requested size: 441.01772pt x 161.02855pt.
- [19 <./Imagenes/exploradorasGeneral.png>] <Imagenes/exploradorasPodas.png, id=
-94, 759.58781pt x 350.05782pt>
+
+<Imagenes/exploradorasPodas.png, id=94, 759.58781pt x 350.05782pt>
 File: Imagenes/exploradorasPodas.png Graphic file (type png)
 
 <use Imagenes/exploradorasPodas.png>
-Package pdftex.def Info: Imagenes/exploradorasPodas.png used on input line 546.
+Package pdftex.def Info: Imagenes/exploradorasPodas.png used on input line 554.
 
 (pdftex.def)             Requested size: 441.01772pt x 203.24731pt.
 
-Overfull \hbox (83.9777pt too wide) in paragraph at lines 553--553
+Overfull \hbox (83.9777pt too wide) in paragraph at lines 564--564
 []\OT1/cmtt/m/n/10 void calcularMaximaCantidadDeEstaciones(int kilometrosDeCabl
 e,vector<int> distanciaDeLasEstaciones){ 
  []
 
-[20 <./Imagenes/exploradorasPodas.png> <./Imagenes/exploradorasCotaPropia.png>]
+[20 <./Imagenes/exploradorasCotaPropia.png> <./Imagenes/exploradorasPodas.png>]
 
-Overfull \hbox (68.22784pt too wide) in paragraph at lines 568--568
+Overfull \hbox (68.22784pt too wide) in paragraph at lines 579--579
 []         \OT1/cmtt/m/n/10 if((distanciaDeLasEstaciones[fin]-distanciaDeLasEst
 aciones[inicio])<=kilometrosDeCable){[] 
  []
 
 [21]
-Overfull \hbox (36.72812pt too wide) in paragraph at lines 627--627
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 638--638
 []\OT1/cmtt/m/n/10 public void sentarExploradoras(ArrayList<Character> explorad
 oras, Ronda rondaAux, int tam){ 
  []
 
 
-Overfull \hbox (110.22748pt too wide) in paragraph at lines 630--630
+Overfull \hbox (110.22748pt too wide) in paragraph at lines 641--641
 []    \OT1/cmtt/m/n/10 if((rondaAux.sumaDistancias(amigas) < rondaOptima.sumaDi
 stancias(amigas)) || (rondaOptima.isEmpty()))[] 
  []
 
 
-Overfull \hbox (110.22748pt too wide) in paragraph at lines 643--643
+Overfull \hbox (110.22748pt too wide) in paragraph at lines 654--654
 []\OT1/cmtt/m/n/10 if((rondaAux.sumaDistancias(amigas) >= rondaOptima.sumaDista
 ncias(amigas)) && (rondaOptima.size() != 0 ))[] 
  []
@@ -939,7 +945,7 @@ AED: lastpage setting LastPage
 [22] (./Informe.aux) ) 
 Here is how much of TeX's memory you used:
  8169 strings out of 495028
- 115456 string characters out of 6181498
+ 115455 string characters out of 6181498
  223728 words of memory out of 5000000
  11178 multiletter control sequences out of 15000+600000
  12963 words of font info for 54 fonts, out of 8000000 for 9000
@@ -960,7 +966,7 @@ fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 >
-Output written on Informe.pdf (22 pages, 319736 bytes).
+Output written on Informe.pdf (22 pages, 321577 bytes).
 PDF statistics:
  152 PDF objects out of 1000 (max. 8388607)
  95 compressed objects within 1 object stream
