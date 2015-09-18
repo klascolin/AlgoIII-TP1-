@@ -10,15 +10,15 @@
 \contentsline {subsection}{\numberline {2.1}Descripci\'on del problema:}{10}
 \contentsline {subsection}{\numberline {2.2}Resoluci\'on del problema:}{10}
 \contentsline {subsection}{\numberline {2.3}Justificaci\IeC {\'o}n del algoritmo:}{11}
-\contentsline {subsection}{\numberline {2.4}Complejidad del algoritmo:}{11}
-\contentsline {subsection}{\numberline {2.5}Tiempos de ejecuci\'on y gr\'afico}{11}
+\contentsline {subsection}{\numberline {2.4}Complejidad del algoritmo:}{12}
+\contentsline {subsection}{\numberline {2.5}Tiempos de ejecuci\'on y gr\'afico}{12}
 \contentsline {section}{\numberline {3}Problema 3: Girl Scouts}{13}
 \contentsline {subsection}{\numberline {3.1}Descripci\IeC {\'o}n del problema:}{13}
-\contentsline {subsection}{\numberline {3.2}Resoluci\IeC {\'o}n:}{13}
+\contentsline {subsection}{\numberline {3.2}Resoluci\IeC {\'o}n:}{14}
 \contentsline {subsection}{\numberline {3.3}Justificaci\IeC {\'o}n:}{16}
-\contentsline {subsection}{\numberline {3.4}Complejidad:}{17}
+\contentsline {subsection}{\numberline {3.4}Complejidad:}{18}
 \contentsline {subsection}{\numberline {3.5}Tiempo de ejecuci\IeC {\'o}n y gr\IeC {\'a}ficos:}{19}
-\contentsline {section}{\numberline {4}Ap\IeC {\'e}ndice:Partes relevantes del c\IeC {\'o}digo}{21}
-\contentsline {subsection}{\numberline {4.1}Problema 1:}{21}
-\contentsline {subsection}{\numberline {4.2}Probelma2:}{21}
-\contentsline {subsection}{\numberline {4.3}Problema3:}{22}
+\contentsline {section}{\numberline {4}Ap\IeC {\'e}ndice:Partes relevantes del c\IeC {\'o}digo}{23}
+\contentsline {subsection}{\numberline {4.1}Problema 1:}{23}
+\contentsline {subsection}{\numberline {4.2}Probelma2:}{24}
+\contentsline {subsection}{\numberline {4.3}Problema3:}{24}

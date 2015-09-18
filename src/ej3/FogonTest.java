@@ -28,7 +28,7 @@ public class FogonTest extends AbstractBenchmark  {
 	  public TestRule benchmarkRun = new BenchmarkRule();
 	//TEST DE CORRECTITUD
 	 
-//	@Test	
+	@Test	
 	public void testSolve1(){
 		System.out.println("Test1(catedra)...");
 		HashSet<Amistad> amistad = new HashSet<Amistad>();
@@ -60,7 +60,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 	
-//	@Test
+	@Test
 	public void testSolve2(){
 		System.out.println("Test2(catedra)...");
 		
@@ -89,7 +89,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 }
 	
-//	@Test
+	@Test
 	public void testSolve3(){
 		System.out.println("Test3(catedra)...");
 		
@@ -122,7 +122,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 }
 	
-	//@Test
+	@Test
 	public void testSolve4(){
 		System.out.println("Test4(catedra)...");
 		
@@ -144,7 +144,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 	
-//	@Test
+	@Test
 	public void testSolve5(){
 		System.out.println("Test5...");
 		
@@ -166,7 +166,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 
-	//@Test
+	@Test
 	public void testSolve6(){
 		System.out.println("Test6...");
 		
@@ -188,7 +188,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 	
-//@Test
+@Test
 	public void testSolveBorder1(){
 		//Caso no hay relaciones de amistad
 		System.out.println("TestBorder...");
@@ -209,7 +209,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 
-	//@Test
+	@Test
 	
 	
 
@@ -233,7 +233,7 @@ public class FogonTest extends AbstractBenchmark  {
 
 }
 
-	//@Test
+	@Test
 	
 	
 
@@ -306,13 +306,6 @@ public class FogonTest extends AbstractBenchmark  {
 		
 		
 	}
-	
-	@Test
-	public  void pepe(){
-		System.out.println("assd");
-		mejorCaso(6);
-		System.out.println("pepe");
-	}
 
 	public static void PeorCaso(int n){
 	
@@ -329,7 +322,7 @@ public class FogonTest extends AbstractBenchmark  {
 		amistad.add(new Amistad('b',exp.get(exp.size()-1)));
 		
 		Fogon f = new Fogon();	
-		 System.out.println(f.solve(exp,amistad)); 
+		 f.solve(exp,amistad); 
 		
 		
 		
@@ -388,7 +381,7 @@ public class FogonTest extends AbstractBenchmark  {
 		
 	}
 	
-    //@Test
+    @Test
     public void testEscrito() throws IOException //lee del *.in y escribe en el *.out
     {
         //Los archivos est�n en /bin/ej3/

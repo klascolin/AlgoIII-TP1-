@@ -78,15 +78,11 @@ import java.util.HashSet;
 			}
 				
 			//PODA2: Si la distancia de la ronda actual ya es peor que la optima, 
-			if((rondaAux.sumaDistancias(amigas) >= rondaOptima.sumaDistancias(amigas)) && (rondaOptima.size() != 0 )){
-				System.out.println(rondaAux.toString());
+			if((rondaAux.sumaDistancias(amigas) >= rondaOptima.sumaDistancias(amigas)) && (rondaOptima.size() != 0 ))
 				rondaAux.remove(rondaAux.size() - 1);
-				
-			}
-			
 			
 			else{
-				
+			
 				//Lo sacamos, para que en el proximo nivel de recursion, no este disponible.
 				//Esto garantiza que no se pueda volver a agarrar
 				exploradoras.remove(i);

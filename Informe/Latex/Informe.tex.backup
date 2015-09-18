@@ -347,13 +347,12 @@ Veamos con detenimiento el algoritmo de SentarExploradoras:
 		
 \tcp{Si no esta completa, es decir todavía quedan decisiones por tomar, estamos en un nuevo paso de la recursion y tenemos que explorar todas las elecciones disponibles en exploradoras, para este nivel del árbol.}
 
-\For{$i <$ Tamaño($exploradoras$) }{
-	\tcp{Elegimos el primero de la lista, que debe ser el elemento mas chico disponible en el nivel}
-	elección $\leftarrow$ $exploradoras[i]$
+\For{$eleccion \in exploradoras$) }{
+	\tcp{Siempre se elige,como primero,al  mas chico disponible en el nivel}
 	
 	Agregar(elección,$rondaAux$)
 	
-	\tcp{PODA1: Se aplica ya sobre el final. Si vamos a comenzar a 	mirar las soluciones del tipo [a,ultima,...()] entonces,podamos esa rama(ver exp mas adelante)}
+	\tcp{PODA1: Se aplica ya sobre el final. Si vamos a comenzar a 	mirar las soluciones  'al revés'(ej [a,b,c,d] = [a,d,c,b]) entonces,podamos esa rama(ver exp mas adelante)}
 	\If{Tamano(rondaAux) = $2$ AND $i$ es el ultimo índice}
 		{salir	del bucle}
 			
@@ -407,32 +406,52 @@ En cuanto a sumaDistancias,básicamente calcula las distancias todos contra todo
 
 \subsection{Justificación:}
 
-Vamos a asumir que las funciones de las demás clases son correctas. Razonaremos , luego, por inducción en la cantidad de exploradoras ($e$),dejando fijo la cantidad de amistades($a \neq 0$), y probaremos que el algoritmo explora todas las posibles rondas que se generan luego de poner el primer elemento(la razon se explico mas arriba) y (RondaAux es instanciada con cada una de ellas).
+Vamos a asumir que las funciones de las demás clases son correctas. Razonaremos , luego, por inducción en la cantidad de exploradoras ($e$),dejando fijo la cantidad de amistades($a \neq 0$), y probaremos que el algoritmo explora todas las posibles rondas que se generan luego de poner el primer elemento(la razon se explico mas arriba) y ,además,RondaAux es instanciada con cada una de ellas.\\
 
-Si $n = 1$, entonces la función \textbf{solve} agregara el primer, y único, elemento de la lista a la $rondaAuxiliar$. Luego, SentarExploradoras($vacia,rondaAux,0$) caerá en el primer if(caso base del backtrack) pues $Tamano(vacia) = tam+1 = 0 +1$.Entonces, entrara al siguiente if, ya que la $rondaOptima$ se encuentra vacía. De esta forma se instancia rondaOptima con $rondaAux$ y se retornara a la función solve, la cual devolverá rondaOptima. Luego, el algoritmo exploro todas las rondas posibles y RondaAux fue instanciada con la ronda adecuada.
+Sea   rondaAux = $\{ e'_{1}\ldots e'_{k} \}   k \in  \mathbb{N}  rondaAux \subset \textbf{L} $\\
+(no necesariamente las primeras k)
 
-Supongamos que $n> 1$.  Es claro que no entrara en el primer if, pues $rondaAux$ tiene un solo elemento. Luego, supongamos que estamos en la iesima iteración del ciclo que explora las posibles elecciones para el primer nivel.Siguiendo el algoritmo: 
+Sea $P$ el algoritmo implementado 
 
-Se agrega el iesimo elemento de la lista de exploradoras(\textbf{L)},que tiene n-1 elementos(pues inicialmente, el backtrack se llama  sin el primer elemento de la lista), a la $rondaAux$(ahora con dos exploradoras). El invariante del ciclo garantiza que  (\textbf{L)} este en orden y que , dentro del mismo nivel del backtrack, el tamaño sea $n-1$(al principio y al final del mismo). Luego, asumamos que no hay ninguna poda para hacer. Entonces, se remueve la iesima exploradora de (\textbf{L)}(ahora con $n-2$ elementos). Luego, por hipótesis inductiva, SentarExploradoras($exploradoras$,$rondaAux$,$tam$) explora todo el árbol de decisión posible con la elección que acabamos de hacer y RondaAux es instanciada con cada una de ellas(notar que entonces RondaAux paso por las rondas $[l1,li,tail]$ con $li \in {l2,..,ln}$ y tail una permutacion de las rondas posibles$ \ \in \{l2,...,ln\} - \{li\}$ . 
-Luego, hay que restablecer el invariante. Para eso, quitamos de la $rondaAux$ a la ultima elección, y la volvemos a agregar en la lista adelante de todo, para mantener el orden. Luego, la lista vuelve a tener $n-1$ elementos. Cuando lleguemos a la iteración final($n-1$) habremos inspeccionado correctamente todos los árboles de decisión para cada elección de la lista de $n-1$ elementos. Luego, el algoritmo explora todas el arbol de decision para n-1 elementos. Es decir, todas las posibles rondas que se generan luego de poner el primer elemento. Y ,además, RondaAux es instanciada con cada una de ellas.
+Sea \textbf{L} la lista de exploradoras de entrada  \textbf{L} = $\{e_{1},...,e_{n}  \}$ con $n \in  \mathbb{N}$ el tamaño de la misma.
 
-Corolario: El algoritmo calcula correctamente la ronda que minimiza las distancias:
+Queremos probar que $\forall k < n , P$  instancia RondaAux con $\{e'_{1},e'_{2},...,e'_{k},P(n,k+1)\}$ donde $P(n,k+1)$ son todas las permutaciones posibles que se forman con los elementos en $\{e_{1},...,e_{n}  \}$ - $\{e'_{1}..e'_{k} \} $\\
+
+Notacion: 
+
+Si $n = 1$, necesariamente $k = 0$. La función \textbf{solve} agregara el primer, y único, elemento de la lista a la $rondaAuxiliar$. Luego, SentarExploradoras($vacia,rondaAux,0$) caerá en el primer if(caso base del backtrack) pues $Tamano(vacia) = tam + 1 = 0 +1 = 1$.Entonces, entrara al siguiente if, ya que la $rondaOptima$ se encuentra vacía. De esta forma se instancia rondaOptima con $rondaAux$ y se retornara a la función solve, la cual devolverá rondaOptima. Luego, el algoritmo exploro todas las rondas posibles( $n - k = 1$) y RondaAux fue instanciada con la ronda adecuada.\\
+
+Supongamos que $n> 1$. Como rondaAux tiene $k < n + 1$ elementos,  es claro que no entrara en el primer if de la funcion($ k != tam = n+1$). Luego, supongamos que estamos en la j-esima iteración del ciclo que explora las posibles elecciones para el k-esimo nivel. Siguiendo el algoritmo: \\
+
+Se agrega el j-esimo elemento de \textbf{L}, \textbf{L}$_{j}$, a la $rondaAux$, ahora con $k+1$ elementos. Notar que , entonces, \textbf{L} = $\{e_{1} \ldots e_{n+1}\} - \{ {e_{i}}_{1}\ldots {e_{i}}_{k+1} \}$  tiene $n+1-k$ elementos pues estamos en el nivel k, y  la recursion descarta un elemento de la lista cada vez que crece en profundidad.
+Además, el invariante del ciclo garantiza que  \textbf{L} este en orden y que ,el tamaño sea $n+1-k$(al principio y al final del mismo).\\
+
+Asumamos que no hay ninguna poda para hacer. Entonces, se remueve la iesima exploradora de \textbf{L}(ahora con $n + 1 -k -1 = n - k$ elementos) y se llama a P recursivamente. Luego, por hipótesis inductiva, P    instancia RondaAux con $\{e_{i_1},..., e_{i_k},L_{j},P(n+1,k+2)\}$ y \textbf{L} es preservada. Notar que $P(n+1,k+2)$  son todas las permutaciones posibles que se forman con los $n-k$ elementos $\{ e_{i_k+2}...e_{i_n+1} \} $ \\
+
+Luego, hay que ver que se restablezca el invariante. Para eso, quitamos de la $rondaAux$ a la ultima elección, y la volvemos a agregar a \textbf{L} adelante de todo, para mantener el orden. Luego, \textbf{L} vuelve a tener $n+1-k$ elementos y como la llamada recursiva la preservó, en este nuevo nivel tambien se mantiene.
+Cuando lleguemos a la iteración final del cilo de este nivel($n+1-k$) habremos inspeccionado todas las elecciones posibles para el nivel y por cada una de ellas, las permutaciones correspondients. Es decir:\\
+
+rondaAux fue instanciada con $\{e_{i_1},..., e_{i_k},L_{j},P(n+1,k+2)\} \ \forall j \in \{0,...,n+1-k) \} \rightarrow$  rondaAux fue instanciada con $\{e_{i_1},..., e_{i_k},P(n+1,k+1)\} $ \\
+
+
+Corolario 1: Es inmediato , por lo anterior, que  si $k=1$, P  instancia RondaAux con $\{e_{i_1},P(n,2)\}$. Por como esta implementado, $e_{i_1}$ siempre es $e_{1}$. Entonces, P explora todas las posibles rondas que se forman con una lista de exploradoras de n elementos.\\
+
+Corolario 2: El algoritmo calcula correctamente la ronda que minimiza las distancias:
 Hay que ver que encuentra la optima.
 Por un lado, se puede ver que cada instancia de RondaAux de tamaño n,  es necesariamente una permutacion de la lista de exploradoras, por lo tanto una ronda posible. 
 Luego,por la proposicion anterior, el algoritmo explora todas las posibles rondas que se generan luego de poner el primer elemento (y las mismas son instanciadas en RondaAux).
 Por lo tanto, todas las instancias de RondaAux que se producen son todas las posibles rondas que se generan luego de poner el primer elemento de la lista.
 En cada llamada a la funcion , se verifica ,con el primer condicional, si la rondaAux(una posible ronda) tiene el tamaño de la lista original(n). Existirá necesariamente, por lo visto arriba,  para cada ronda posible, una instancia de rondaAux que sea igual a esta(y por lo tanto su tamaño sera igual a n). Esto garantiza que se evalue, como se ve en el codigo, la sumaDistancia sobre esta ronda y se la compare con la de la  rondaOptima.
-Si es la primera vez que se mira una ronda,es decir rondaOptima es vacia y se ha formado tan solo una rama en el arbol de decision, la mejor es la rondaAux y rondaOptima es instanciada con este valor. Luego rondaOptima es la mejor.
+Razonando inductivamente: Si es la primera vez que se mira una ronda,es decir rondaOptima es vacia y se ha formado tan solo una rama en el arbol de decision, la mejor es la rondaAux y rondaOptima es instanciada con este valor. Luego rondaOptima es la mejor.
 Supongamos que estamos hemos formado k ramas, es decir explorados k rondas, y rondaOptima contiene la mejor. Una vez en la k+1-esima rama, entraremos al primer condicional,por lo visto arriba, y luego si la sumaDistancias es menor que la rondaOptima actual, se reemplaza el valor. Luego, al cabo de la k+1-esima rama, rondaOptima contiene la mejor.
 
-Instancia: El estado del objeto en un momento determinado del algoritmo.
 
 ¿Que hubiese pasado en caso de haberse efectuado una poda?
 Durante toda la demostracion anterior se asume que no hay podas.
 Si en alguna iteración hubiésemos caído en la primer poda, se habrían perdido posibles soluciones. Sin embargo, se puede ver que aquellas que se descartan ,en este caso, son rondas que se obtienen de mirar "al revés" las que ya se vieron. Por lo tanto no aportan un nuevo espacio de soluciones.
 Si en alguna iteración hubiésemos caído en la segunda poda, significaría que aquella ronda no era mejor que la óptima. Luego, como agregando nuevas elecciones no podría mejorar, es seguro podar.
 
-
+\textit{Instancia:} El estado del objeto en un momento determinado del algoritmo.
 \subsection{Complejidad:}
 
 Como hay mas de una clase, podemos comenzar por analizar la complejidad de las mas pequeñas.
@@ -521,27 +540,39 @@ Con esto queda demostrado que la complejidad del algoritmo cumple con la exigida
 
 \subsection{Tiempo de ejecución y gráficos:}
 
-Para ver el desempeño del algoritmo, se pensaron algunos test de peor y mejor caso, al igual que casos sin intencionalidad.
+Para ver el desempeño del algoritmo, se pensaron algunos test de peor y mejor caso, al igual que casos sin intencionalidad (asumiendo un conjunto de amistades fijo de una única relación).
 \\En el peor caso, se buscó algún escenario en el que las podas se efectúen lo menos posible.
-Por ejemplo: Si se tiene la lista [a,b,c,d,e,f] y solo son amigas f y b. Lo que ocurrirá es que el algoritmo explorará ramas que 'parecen' ser las mejores y se dará cuenta 'tarde' que realmente no serivan. En concreto, a priori las rondas que empiezen con [a,b/c/d/e] no seran podadas(claramente la suma de distancias es cero). Por lo tanto las ramas no se podaran desde arriba. De la misma forma,en el proximo nivel, por ejemplo, [a,(b/c/d/e),(c/b)] tampoco se podará. Es decir, el hecho de que la f aparezca como eleccion final de cada nivel, obliga a mirar muchos casos donde la ronda tiene peso nulo, solo pudiendo podar cuando se alcanza una profundidad relativamente grande.
+Por ejemplo: Si se tiene la lista [a, b, c, d, e, f] donde únicamente son amigas $f$ y $b$. Lo que ocurrirá es que el algoritmo explorará ramas que 'parecen' ser las mejores y se dará cuenta 'tarde' de que realmente no servían.
+\\En concreto, a priori las rondas que empiecen con [a, b/c/d/e] no serán podadas (claramente la suma de distancias es cero). Por lo tanto, las ramas no se podarán desde arriba. De la misma forma, en el próximo nivel, por ejemplo [a,(b/c/d/e),(c/b)], tampoco se podará. Es decir, el hecho de que la f aparezca como elección final de cada nivel, obliga a mirar muchos casos donde la ronda tiene peso nulo, solo pudiendo podar cuando se alcanza una profundidad relativamente grande.\\
 
+El mejor caso, en cambio, ocurre cuando las amigas son los primeros elementos. Por ejemplo, sea [a, b, c, d] la lista de exploradoras. Si $a$ está relacionada con $b$, en la primera pasada ya se consigue la ronda óptima, por lo tanto todas las rondas que se armen serán peores. La $poda_{2}$, entonces, actuará desde los primeros niveles, cortando ramas largas.
+\\Por ejemplo, cuando se evalúe [a, c, b], se descartará la $rondaAux$ (de tres elementos) ya que no supera a la óptima. Lo mismo ocurrirá con [a, d, b]. El hecho de que $b$ sea la primera elección para cada nivel, facilita la detección de ramas que no conducen a ninguna solución mejor.\\
+\\En el primer gráfico, se puede observar la diferencia de tiempos entre el peor y mejor caso y los casos sin intencionalidad. Mientras que en el segundo se comparan los tiempos del peor caso con la cota $O(e!e^2)$, la cual se encuentra multiplicada por una constante positiva muy pequeña. Por último, se analiza la efectividad de las podas al correr los tests del mejor caso (descrito anteriormente) sin las mismas.\\
+En cada caso, se presentan dos gráficos con distinta escala para poder lograr una mayor claridad.
 
-\\El mejor caso, en cambio, ocurre cuando se encuentra la solución en la primera pasada. Por ejemplo, sea [a, b, c, d] la lista de exploradoras. Si $a$ está relacionada con $b$, en la primera pasada ya se consigue la ronda óptima, por lo tanto todas las rondas que se armen serán peores. La poda2, entoncés, actuara desde los primeros niveles, cortando ramas largas. Por ejemplo, cuando se evalue [a,c,b] se descartara las rondaAux(de 3 elementos) ya que no supera a la optima. Lo mismo ocurrirá con [a,d,b].
-\\En el primer gráfico, se puede observar la diferencia de tiempos entre el peor y mejor caso y los casos sin intencionalidad. Mientras que en el segundo se comparan los tiempos del peor caso con la cota $O(e!e^2)$, la cual se encuentra multiplicada por una constante positiva muy pequeña.
-\\Por último, se analiza la efectividad de las podas al correr los tests del mejor caso (descrito anteriormente) sin las mismas.
-\\
+	\begin{figure}[H]
+  		\centering
+   	 	\includegraphics[width=1\textwidth]
+   	 	{Imagenes/exploradorasGeneralChico.png}
+		\caption{Tiempos de los distintos casos de prueba}
+	\end{figure}
 	\begin{figure}[H]
   		\centering
    	 	\includegraphics[width=1\textwidth]
    	 	{Imagenes/exploradorasGeneral.png}
 		\caption{Tiempos de los distintos casos de prueba}
 	\end{figure}
-	\\
-	
-	
-	Se puede observar en la figura 9, el desempeño del algoritmo luego de correr los test de performance de mejor y peor caso, asi tambien como aquel sin intencionalidad.
-	A saber, el codigo fue sometido a una cantidad considerable de ejecuciones(sobre un test determinado) para los distintos tamaños de entrada. EL 'benchmark' tambien corre los test una cantidad prudencial de veces,previamente, para hacer el 'warm-up' de la maquina virtual de Java. Luego, se toma el promedio de ejecucion sobre las restantes corridas(sin incluir el warm-up). Finalmente,se filtran los datos para evitar outliers y se vuelve a tomar el promedio sobre las muestras que hayan pasado el umbral de 'ruido'(esto se hace quitando los valores que estan a una distancia mayor a el desvio estandar multiplicado por una constante. El codigo de lo recien mencionado se encuentra disponible en la clase Benchmark)
-	
+	  
+	Se puede observar en la figura 9 y 10, el desempeño del algoritmo luego de correr los tests de performance de mejor y peor caso, así también como aquél sin intencionalidad.
+	A saber, el código fue sometido a una cantidad considerable de ejecuciones (sobre un test determinado) para los distintos tamaños de entrada. El 'benchmark' tambien corre los tests una cantidad prudencial de veces, previamente, para hacer el 'warm-up' de la maquina virtual de Java. Luego, se toma el promedio de ejecucion sobre las restantes corridas (sin incluir el warm-up).
+	\\Finalmente, se filtran los datos para evitar outliers y se vuelve a tomar el promedio sobre las muestras que hayan pasado el umbral de 'ruido' (esto se hace quitando los valores que se encuentran a una distancia mayor al desvío estándar multiplicado por una constante. El código de lo recien mencionado se encuentra disponible en la clase Benchmark.java).
+
+	\begin{figure}[H]
+  		\centering
+   	 	\includegraphics[width=1\textwidth]
+   	 	{Imagenes/exploradorasCotaPropiaChico.png}
+		\caption{Tiempos del peor caso comparado con la cota}
+	\end{figure}	
 	\begin{figure}[H]
   		\centering
    	 	\includegraphics[width=1\textwidth]
@@ -549,15 +580,22 @@ Por ejemplo: Si se tiene la lista [a,b,c,d,e,f] y solo son amigas f y b. Lo que 
 		\caption{Tiempos del peor caso comparado con la cota}
 	\end{figure}
 	
-	El grafico anterior evidencia lo que se habia demostrado teoricamente en la seccion de complejidad. Es decir, el peor caso de nuestro algoritmo está realmente acotado por la funcion que se habia calculado teoricamente.
-		\begin{figure}[H]
+	Los dos gráficos anteriores evidencian lo que se había demostrado teoricamente en la sección de complejidad. Es decir, el peor caso de nuestro algoritmo está realmente acotado por la función que se había calculado teóricamente.
+
+	\begin{figure}[H]
+  		\centering
+   	 	\includegraphics[width=1\textwidth]
+   	 	{Imagenes/exploradorasPodasChico.png}
+		\caption{Tiempos del mejor caso con y sin las podas}
+	\end{figure}	
+	\begin{figure}[H]
   		\centering
    	 	\includegraphics[width=1\textwidth]
    	 	{Imagenes/exploradorasPodas.png}
 		\caption{Tiempos del mejor caso con y sin las podas}
 	\end{figure}
 	
-	En el grafico anterior se muestra la comparacion de rendimiento con la implementacion de las podas
+	Por último, estos gráficos nos permiten observar la diferencia de performance cuando se aplican las podas y cuando no, evidenciando el ahorro de tiempo que se acrecenta conforme aumenta la cantidad de exploradoras.
 	
 \section{Apéndice:Partes relevantes del código}
 
